@@ -22,7 +22,8 @@ Route::get('/', function () {
 // });
 Route::get('result', 'TicketViewController@viewstatus');
 Route::get('products','ProductController@listproducts');
-Route::get('products/change/','ProductController@viewpage');
+Route::get('products/changes/','ProductController@filteredProduct');
+Route::get('products/filter/','ProductController@filteredProduct');
 
 Route::get('products/{productid}','ProductController@detailproducts');
 

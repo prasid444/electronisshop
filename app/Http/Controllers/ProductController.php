@@ -10,12 +10,30 @@ class ProductController extends Controller{
 
 public function listproducts(){
 $productdatas=App\Product::paginate(12);
-return view("products")->with(compact("productdatas"));
+$models=App\Product::select('brand')->groupBy('brand')->get();
+ //return $models;
+return view("products")->with(compact("productdatas"))->with(compact('models'));
 
 }
-public function viewpage(){
+public function pagedProduct(){
   $productdatas=App\Product::paginate(12);
-  return view("products")->with(compact("productdatas"))->render();
+  return view("productscontent")->with(compact("productdatas"))->render();
+}
+public function filteredProduct(){
+  //$pid=$request->input('minpid');
+  //return $modelvalue;
+  $modelval=Input::get('model');
+  if($modelval=='all'){
+    $productdatas=App\Product::paginate(12);
+
+  }
+  else {
+    $productdatas=App\Product::where('brand',$modelval)->paginate(12);
+
+  }
+
+  return view("productscontent")->with(compact("productdatas"))->render();
+
 }
 
 public function detailproducts($productid){

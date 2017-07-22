@@ -1,18 +1,33 @@
-<head>
+<html>
 
+<head>
+<meta charset="utf-8" />
 <title>Products</title>
 
 {{-- <link href = "/css/bootstrap-min.css" rel = "stylesheet"> --}}
-<link href = "/css/bootstrap.css" rel = "stylesheet">
-<script src="/js/jquery-3.2.1.js" type="text/javascript"></script>
 
-<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+<link href="/css/bootstrap.css" rel="stylesheet" />
+
 </head>
 
 <body>
 
+  <div class="filter">
 
 
+   <h3>Filter by models</h3>
+
+   <div id="ab">Models</div>
+
+   <select id="fetchmodel" name="modelname">
+     <<option value="all">All</option>
+   @if ($models)
+   @foreach ($models as $model)
+     <option value="{{$model->brand}}">{{$model->brand}}</option>
+   @endforeach
+   @endif
+   </select>
+ </div>
 <div class="container">
 
   <div class="row productcontent">
@@ -50,57 +65,83 @@
 
   </div>
 
-
-
-
-
   </div>
 
 
-</body>
-<script>
 
-  $(document).on('click','.pagination a',function(e){
+  <script src="/js/jquery-3.2.1.js" type="text/javascript"></script>
 
-    e.preventDefault();
-    console.log($(this).attr('href').split('page='));
-    var page=$(this).attr('href').split('page=')[1];
-    getProducts(page);
-  });
-  function getProducts(page){
-    $.ajax({
-      asyns:true,
-      url:'/products/change/?page='+page
-    }).done(function (data){
-      $('.productcontent').html(data);
-      location.hash=page;
+  <script >
+
+    $(document).on('click','.pagination a',function(e){
+      e.preventDefault();
+      console.log($(this).attr('href').split('page='));
+      var page=$(this).attr('href').split('page=')[1];
+      getProducts(page);
+    });
+    function getProducts(page){
+      $.ajax({
+        asyns:true,
+        url:'/products/filter/?page='+page+'&model='+$('#fetchmodel').val()
+      }).done(function (data){
+        $('.productcontent').html(data);
+        location.hash=page;
+        console.log("done");
+//        console.log(data);
+
+      });
+
+    }
+    $(document).on('change','#fetchmodel',function(e){
+      e.preventDefault();
+
+      //var pm=$(this).attr('href').split('model=')[1];
+      //console.log($(this).attr('href'));
+      var modelvalue=$(this).val();
+      console.log(modelvalue);
+      filterProducts(modelvalue);
     });
 
+    function filterProducts(modelvalue){
+      $.ajax({
+        asyns:true,
+
+        url:'/products/filter/?model='+modelvalue
+      }).done(function (data){
+        $('.productcontent').html(data);
+
+        //location.hash=modelvalue;
+
+        console.log(data);
+      });
+
+    }
+  </script>
+  <style>
+  .pagination {
+      display: flex;
   }
 
-</script>
-<style>
-.pagination {
-    display: flex;
-}
-
-.pagination a {
-    color: black;
-    border: 1px solid #ddd; /* Gray */
-    /*float: left;*/
+  .pagination a {
+      color: black;
+      border: 1px solid #ddd;
+      float: left;
+      padding: 8px 16px;
+      text-decoration: none;
+  }
+  .pagination .active {
+    background-color: lightgreen;
+    border: 1px solid #ddd;
+    float: left;
     padding: 8px 16px;
     text-decoration: none;
-}
-.pagination a.active {
-  color: black;
-  border: 1px solid #ddd; /* Gray */
-  /*float: left;*/
-  padding: 8px 16px;
-  text-decoration: none;
-    /*color: red;*/
-}
+      color: red;
+  }
 
-/*.pagination a:hover:not(.active) {background-color: #ddd;}*/
+  .pagination a:hover:not(.active) {background-color: #ddd;}
 
 
-</style>
+  </style>
+
+</body>
+</html>
