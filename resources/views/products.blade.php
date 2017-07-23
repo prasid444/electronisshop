@@ -76,6 +76,8 @@
     $(document).on('click','.pagination a',function(e){
       e.preventDefault();
       console.log($(this).attr('href').split('page='));
+      // var he="hellp";
+      // console.log("hello".substring(0,he.length-4));
       var page=$(this).attr('href').split('page=')[1];
       getProducts(page);
     });

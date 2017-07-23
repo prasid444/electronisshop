@@ -9,6 +9,16 @@ use App;
 class TicketViewController extends Controller
 {
     //
+    public function showstatus(){
+      $tic=Input::get('ticketno');
+      $ticketinfo=App\RepairTicket::where('repairid',$tic)->first();
+      //return $name;
+      if($ticketinfo){
+      $customerdata=App\Customer::where('customerid',$ticketinfo->customerid)->first();
+    }
+      //$customername=$customerdata->customerFirstName+$customerdata->customerLastName;
+      return view("status")->with(compact('ticketinfo'))->with(compact('customerdata'))->render();
+    }
     public function viewstatus(Request $request){
 
 

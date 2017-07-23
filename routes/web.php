@@ -20,7 +20,7 @@ Route::get('/', function () {
 // Route::get('result',function(){
 //   return "hello";
 // });
-Route::get('result', 'TicketViewController@viewstatus');
+Route::get('result/', 'TicketViewController@showstatus');
 Route::get('products','ProductController@listproducts');
 Route::get('products/changes/','ProductController@filteredProduct');
 Route::get('products/filter/','ProductController@filteredProduct');

@@ -1,15 +1,8 @@
-<head>
 
-  <title>
-    Repair Status
-  </title>
-</head>
-<body>
 
   @if ($ticketinfo)
 
-
-  <h1>Ticket no {{$ticketinfo->repairid}} </h1><br />
+  <h3>Ticket no {{$ticketinfo->repairid}} </h3>
   @if ($customerdata)
   <label>Name: {{$customerdata->customerFirstName}} {{$customerdata->customerLastName}}</label><br
   @else
@@ -21,14 +14,6 @@
   <label>Date: {{$ticketinfo->repairDate}}</label><br />
 
 @else
-<h1>Ticket doesnt exist</h1>
+<h3 style="color:red;">Ticket doesnt exist</h3>
 @endif
-</body>
-
-
-
-{{-- @if ($users)
-   @foreach($users as $user)
-      {{ $user->name }}
-   @endforeach
-@endif --}}
+<button class="closestatus" style="color:red;">Close</button>
