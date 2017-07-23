@@ -39,10 +39,26 @@ public function filteredProduct(){
 public function detailproducts($productid){
 
   $productdata=App\Product::where('productid', $productid)->first();
+  if($productdata->popularity <10000){
+    $productda=App\Product::where('productid',$productid)->update(['popularity'=>$productdata->popularity+1]);
+
+  }
+  if($productdata->price >=0){
+    $suggestedproducts=App\Product::where([
+                                          ['productid','<>',$productid],
+                                          ['price','<',$productdata->price * 1.5],
+                                          ['price','>',$productdata->price * 0.6],
+                                          ['popularity','>',$productdata->popularity*0.5],
+                                          ['popularity','<',$productdata->popularity*1.5],
+
+
+                                          ]  )->orderBy('popularity','desc')->limit(5)->get();
+  }
 
  //return $productdata;
+ //return $suggestedproducts;
 //  return "hellp" + $productid;
-  return view("productdetail")->with(compact("productdata"));
+return view("productdetail")->with(compact("productdata"))->with(compact('suggestedproducts'));
 }
 
 

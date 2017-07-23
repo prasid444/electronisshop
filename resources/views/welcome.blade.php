@@ -87,7 +87,7 @@
                                     <div class="input-group cbx-input-group">
                                         <input class="lz-input form-control ticketvalue" type="number" name="ticketno" id="subscribe" placeholder="Enter Your Bill Number(Eg. 5)" required="required">
                                             <span class="input-group-btn">
-                                            <button class="btn lz-submit-btn repairbtn " type="button">Search</button>
+                                            <button class="btn lz-submit-btn  " type="submit">Search</button>
                                             </span>
                                     </div><!-- /input-group -->
                                 </form>
@@ -97,7 +97,6 @@
                     <!-- Result detail for ticket number-->
                     <div align="center" class"resultdetail">
                       <div class="resultdata">
-
 
                       </div>
 
@@ -155,16 +154,16 @@
           });
 
 
-$('.repairbtn').on('click',function(e){
-   console.log($(this).attr('action'));
-   var page=$(this).attr('action');
-   var ticketNo=$(".ticketvalue").val(); //fetch the ticketnumber from the form
-   console.log(ticketNo);
-   getResult(ticketNo);
-
-  //  alert($(this).attr('action'));
-
-});
+// $('.repairbtn').on('click',function(e){
+//    console.log($(this).attr('action'));
+//    var page=$(this).attr('action');
+//    var ticketNo=$(".ticketvalue").val(); //fetch the ticketnumber from the form
+//    console.log(ticketNo);
+//    getResult(ticketNo);
+//
+//   //  alert($(this).attr('action'));
+//
+// });
 
 //get the results for given ticket number
 
@@ -173,6 +172,7 @@ function getResult(ticketNo){
     asyns:true,
     type:'post',
     url:'/result/?ticketno='+ticketNo
+
   }).done(function (data){
     $('.resultdata').html(data);
 
