@@ -25,38 +25,38 @@
     <link rel="stylesheet" href="css/animate.css" media="all"  />
 
     <link rel="stylesheet" href="css/bootstrap.min.css" media="all" />
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css" media="all" />
+    {{-- <link rel="stylesheet" href="css/bootstrap-theme.min.css" media="all" /> --}}
 
 
-    <link rel="stylesheet" href="css/font-awesome.min.css" media="all" />  '
-    <link rel="stylesheet" href="css/theme.css"  />
-    <link href="css/theme2.css" rel="stylesheet">
+    {{-- <link rel="stylesheet" href="css/font-awesome.min.css" media="all" />  ' --}}
+    {{-- <link rel="stylesheet" href="css/theme.css"  /> --}}
+    {{-- <link href="css/theme2.css" rel="stylesheet"> --}}
 
     <!-- <link rel="stylesheet" href="css/animate.css"> -->
     <!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"> -->
 
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300, 400,600,700|Raleway:400,300,500,700,600,900' rel='stylesheet' type='text/css'>
+    {{-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:300, 400,600,700|Raleway:400,300,500,700,600,900' rel='stylesheet' type='text/css'> --}}
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css" media="all" />
 
-    <link rel="stylesheet" id="lz-switcher-style" href="css/switcher-default.css" media="all" />
+    {{-- <link rel="stylesheet" id="lz-switcher-style" href="css/switcher-default.css" media="all" /> --}}
 
 
-    <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+    {{-- <script src="js/vendor/modernizr-2.6.2.min.js"></script> --}}
     <!-- DNS Prefetch for Google Hosted libraries, Remove if you don't need that. -->
-    <link rel="dns-prefetch" href="//ajax.googleapis.com">
+    {{-- <link rel="dns-prefetch" href="//ajax.googleapis.com"> --}}
 
 
 </head>
-<body>
+<body >
 <!--[if lt IE 7]>
     <p class="browsehappy">We are Extreamly sorry, But the browser you are using is probably from when civilization started. Which is way behind to view this site properly. Please update to a modern browser, At least a real browser. </p>
     <![endif]-->
     <div class="cblzbody-wrapper">
     <header>
       <!-- Collect the nav links, forms, and other content for toggling -->
-    	<div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+    	{{-- <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
     	     <ul class="nav navbar-nav navbar-right">
     		     <li class=""><a href="#">HOME</a> </li>
              <li class=""><a href="/products">STORE</a> </li>
@@ -64,7 +64,7 @@
     			   <li class=""><a href="#">REPAIR</a> </li>
     			   <li class=""><a href="#">CONTACT</a> </li>
     		   </ul>
-    	</div>
+    	</div> --}}
     	<!-- /.navbar-collapse -->
         <div id="lz-headertop" class="lz-headertop" style="margin-top: -20px;">
             <div class="cbx-header-inner" >
@@ -80,14 +80,23 @@
                     <!-- Start Countdown row -->
 
                     </div>
-                    <div class="row" style="margin-bottom:100px; ">
+                    <div class="row " style="margin-bottom:100px; ">
                         <div class="col-xs-12 col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6  ">
                             <div class="lz-subscribe wow slideInRight animated">
                                 <form action="/" class="repairstatusform subscribe-form cbx-subscribe-form" role="form">
                                     <div class="input-group cbx-input-group">
                                         <input class="lz-input form-control ticketvalue" type="number" name="ticketno" id="subscribe" placeholder="Enter Your Bill Number(Eg. 5)" required="required">
                                             <span class="input-group-btn">
-                                            <button class="btn lz-submit-btn  " type="submit">Search</button>
+
+                                                <button class="btn lz-submit-btn  "   type="submit">
+                                                  <div class="loadingimage" style="position:absolute; left:40%; top:30%; display:none;" >
+
+                                                    <img src="/images/products/loading.gif" />
+                                                  </div>
+                                                  Search</button>
+
+
+
                                             </span>
                                     </div><!-- /input-group -->
                                 </form>
@@ -128,10 +137,14 @@
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
 <script>
+// $(document).ready(function(){
+//   $('.loadingimage').hide();
+// });
 
 /* attach a submit handler to the form */
           $(".repairstatusform").submit(function(event) {
-
+              $('.loadingimage').show();
+            //  $('.searchbar').hide(); //to hide the search bar
               /* stop form from submitting normally */
               event.preventDefault();
 
@@ -175,13 +188,16 @@ function getResult(ticketNo){
 
   }).done(function (data){
     $('.resultdata').html(data);
+    $('.loadingimage').hide();
 
     //to remove div when close button clicked
     $(document).on('click','.closestatus',function(){
 
         $('.resultdata').text('');
+        $(".ticketvalue").val("");
+        //$('.searchbar').show();
         //location.hash=page;
-        console.log(data);
+      //  console.log(data);
 
     });
     //location.hash=page;

@@ -5,10 +5,10 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class Admin extends Authenticatable
 {
     use Notifiable;
-
+    protected $guard='admin' ;  //as configyed in the config/auth.php
     /**
      * The attributes that are mass assignable.
      *

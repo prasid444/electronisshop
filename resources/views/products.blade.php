@@ -2,13 +2,59 @@
 
 <head>
 
+  <!-- Bootstrap Core CSS -->
+  {{-- <link href="css1/bootstrap.css" rel="stylesheet"> --}}
+  {{-- <link rel="stylesheet" href="css1/bootstrap-r  esponsive.css"> --}}
+
+  <!-- Custom Css -->
+
+
+  {{-- <link rel="stylesheet" href="{{ asset('css1/custom-styles.css')}}"> --}}
+  {{-- <link rel="stylesheet" href="{{ asset('css/animate.css')}}" media="all"  /> --}}
+  {{-- <link href="{{ asset('css1/main.css')}}" rel="stylesheet"> --}}
+  {{-- <link href="{{ asset('css1/style.css')}}" rel="stylesheet" type="text/css" media="all" /> --}}
+  {{-- <link href="{{ asset('css1/theme.css')}}" rel="stylesheet"> --}}
+  {{-- <link rel="stylesheet" href="{{ asset('css2/main.css')}}"> --}}
+  {{-- <link href="{{ asset('css2/custom.css')}}" rel="stylesheet"> --}}
+  {{-- <link href="{{ asset('css1/styled.css')}}" rel="stylesheet"> --}}
+  {{-- <link rel="stylesheet" href="{{ asset('css1/custom-styles.css')}}"> --}}
+      <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}" media="all" />
+        {{-- <link rel="stylesheet" href="{{ asset('css2/bootstrap.css')}}" media="all" /> --}}
+      {{-- <link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css')}}" media="all" /> --}}
+        {{-- <link href="{{ asset('css/theme2.css')}}" rel="stylesheet"> --}}
+         {{-- <link href="{{ asset('css2/style.css')}}" rel="stylesheet"> --}}
+      {{-- <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css')}}" media="all" />  ' --}}
+
+        {{-- <link rel="stylesheet" href="{{ asset('css/social.css')}}"> --}}
+       {{-- <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css"> --}}
+         {{-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script> --}}
+         {{-- <script src="{{asset('js/jquery.min.js')}}" type="text/javascript"></script> --}}
+
+
+{{-- <script src="js/jquery-unveil.min.js" type="text/javascript"></script> --}}
+
+  <!-- Custom Fonts -->
+  {{-- <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"> --}}
+         <link rel="stylesheet" href="{{ asset('css/style.css')}}" media="all" />
+
+      <link rel="stylesheet" id="lz-switcher-style" href="{{ asset('css/switcher-default.css')}}" media="all" />
+
+
+      {{-- <script src="{{ asset('js/vendor/modernizr-2.6.2.min.js')}}"></script> --}}
+      {{-- <script type="text/javascript" src="https://raw.githubusercontent.com/ressio/lazy-load-xt/master/dist/jqlight.lazyloadxt.min.js"></script> --}}
+
 <style type="text/css">
 
 
   #tree-container label.hover{
       color: red;
   }
+
+
 </style>
+<script>
+
+</script>
 <meta charset="utf-8" />
 <title>Products</title>
 
@@ -22,6 +68,7 @@
 
   <div class="filter">
 
+<div class="modelfilter">
 
    <h3>Filter by models</h3>
 
@@ -31,10 +78,35 @@
      <<option value="all">All</option>
    @if ($models)
    @foreach ($models as $model)
-     <option value="{{$model->brand}}">{{$model->brand}}</option>
+     <option value="{{$model->brand}} ">{{$model->brand}}({{$model->total}})</option>
    @endforeach
    @endif
    </select>
+
+ </div>
+<div style="display:flex;">
+<form action="/products/mainfilter/s" class="filterform" style="display:flex" role="form">
+
+  <input name="minprice" type='number'  />minprice
+  <input name="maxprice" type='number' />maxprice
+
+<input name="minram" type="number" />minram
+
+
+<input name="minbackcam" type="number" />minbackcam
+
+<input type="submit" value="filter" />
+
+<select id="sortproducts">
+<<option value="0">Usual</option>
+<<option value="1">Price Low to High</option>
+<<option value="2">Price High to Low</option>
+<<option value="3">Popular First</option>
+<<option value="4">New First</option>
+</select>
+
+ </form>
+</div>
  </div>
 <div class="container">
 
@@ -52,7 +124,7 @@
  <div class="col-md-3 col-sm-6 col-xs-12" style="padding-bottom:10px">
  <div class="col-item cbx-single-all">
  <div class="photo">
- <img style="margin-left:1%; padding:10px 10px; size:cover; " src="/images/products/{{$productdata->imagename}}" onerror="this.src='/images/products/default.jpg'"  alt="{{$productdata->title}}"/>
+ <img  class="lazy" style="margin-left:1%; padding:10px 10px;" src="loading.gif" data-original="/images/products/{{$productdata->imagename}}" onerror="this.src='/images/products/default.jpg'"  alt="{{$productdata->title}}"/>
  </div>
  <div class="info">
  <div class="row">
@@ -100,30 +172,106 @@
 
 
   <script src="/js/jquery-3.2.1.js" type="text/javascript"></script>
+  <script src="/js/jquery.lazyload.js" type="text/javascript"></script>
 
   <script >
 
+
+//forr filtering from form
+  $('.filterform').submit(function(event){
+    event.preventDefault();
+
+
+
+        getProducts(1);
+    });
+
+//not used now
+    function getFilteredResult(minprice,maxprice,minram,minbackcam,model){
+
+        $.ajax({
+          asyns:true,
+          type:'get',
+          url:'/products/mainfilter/?model='+model+'&minprice='+minprice
+        }).done(function (data){
+          $('.productcontent').html(data);
+          console.log(data);
+        });
+    }
+    $(function () {
+               $(function () {
+                   $("img.lazy").lazyload({
+                       event: "sporty"
+                   });
+               });
+               $(window).bind("load", function () {
+                   var timeout = setTimeout(function () { $("img.lazy").trigger("sporty") }, 500);
+               });
+           });
+//
+//   $(function() {
+//   $("img.lazy").lazyload({
+//     event:"sporty"
+//     //event:"click" //show when clicked
+//     //thresold:200  //load 200px before appear in viewport
+//   });
+// });
+
+//while clicking next page
     $(document).on('click','.pagination a',function(e){
-      e.preventDefault();
+     e.preventDefault();
+      $(document).ready(function(){
+   $(window).scrollTop(0);
+});
       console.log($(this).attr('href').split('page='));
       // var he="hellp";
       // console.log("hello".substring(0,he.length-4));
       var page=$(this).attr('href').split('page=')[1];
+
       getProducts(page);
     });
+
+    //main function to filter the products and also manage the page
     function getProducts(page){
+
+      var minprice=$('.filterform').find('input[name="minprice"]').val();
+      if(minprice.trim().length==0){
+        minprice=0;
+        console.log("minprice is emptys");
+      }
+      var maxprice=$('.filterform').find('input[name="maxprice"]').val();
+      if(maxprice.trim().length==0){
+        maxprice=1000000;
+        console.log("maxprice is emptys");
+      }
+      var minram=$('.filterform').find('input[name="minram"]').val();
+      if(minram.trim().length==0){
+        minram=0;
+        console.log("minram is emptys");
+      }
+      var minbackcam=$('.filterform').find('input[name="minbackcam"]').val();
+      if(minbackcam.trim().length==0){
+        minbackcam=0;
+        console.log("minbackcam is emptys");
+      }
       $.ajax({
         asyns:true,
-        url:'/products/filter/?page='+page+'&model='+$('#fetchmodel').val()
+
+        url:'/products/filter/?page='+page+'&model='+$('#fetchmodel').val()+'&minprice='+minprice+'&maxprice='+maxprice+'&minram='+minram+'&minbackcam='+minbackcam+'&sort='+$('#sortproducts').val()
       }).done(function (data){
         $('.productcontent').html(data);
-        location.hash=page;
+        //location.hash='filter';
+        //history.replaceState();
+        //;azyload
+        $("img.lazy").lazyload();
         console.log("done");
 //        console.log(data);
 
       });
 
     }
+
+    //while changing model
     $(document).on('change','#fetchmodel',function(e){
       e.preventDefault();
 
@@ -131,9 +279,23 @@
       //console.log($(this).attr('href'));
       var modelvalue=$(this).val();
       console.log(modelvalue);
-      filterProducts(modelvalue);
+      getProducts(1);
+    //  filterProducts(modelvalue);
     });
 
+    //while changing sorting method
+    $(document).on('change','#sortproducts',function(e){
+      e.preventDefault();
+
+      //var pm=$(this).attr('href').split('model=')[1];
+      //console.log($(this).attr('href'));
+      var sortvalue=$(this).val();
+      console.log("sorting method"+sortvalue);
+      getProducts(1);
+    //  filterProducts(modelvalue);
+    });
+
+//not used now
     function filterProducts(modelvalue){
       $.ajax({
         asyns:true,
@@ -141,6 +303,8 @@
         url:'/products/filter/?model='+modelvalue
       }).done(function (data){
         $('.productcontent').html(data);
+        //laxyload
+        $("img.lazy").lazyload();
 
         //location.hash=modelvalue;
 
@@ -148,9 +312,11 @@
       });
 
     }
+
+
   </script>
   <style>
-  .pagination {
+  /*.pagination {
       display: flex;
   }
 
@@ -171,7 +337,7 @@
   }
 
   .pagination a:hover:not(.active) {background-color: #ddd;}
-
+*/
 
   </style>
 

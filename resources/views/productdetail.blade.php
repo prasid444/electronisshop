@@ -34,12 +34,12 @@
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css')}}" media="all" />  '
 
       <link rel="stylesheet" href="{{ asset('css/social.css')}}">
-     <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
-       <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+     {{-- <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css"> --}}
+       {{-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script> --}}
 
 
 <!-- Custom Fonts -->
-<link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+{{-- <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"> --}}
        <link rel="stylesheet" href="{{ asset('css/style.css')}}" media="all" />
 
     <link rel="stylesheet" id="lz-switcher-style" href="{{ asset('css/switcher-default.css')}}" media="all" />
@@ -110,7 +110,19 @@
   							<p style="  border-radius:5px; font-size:15px; font-weight:bold;"> Screen:{{$productdata->Sizeinch}}"</p>
   							<p style="  border-radius:5px; font-size:15px; font-weight:bold;"> Android:{{$productdata->Osvalue}}</p>
   							<p style="  border-radius:5px; font-size:15px; font-weight:bold; "> RAM:{{$productdata->RamSize}} GB</p>
-  							<p style="  border-radius:5px; font-size:15px; font-weight:bold; "> Camera:{{$productdata->price}} MP</p>
+                @if ($productdata->discount >0)
+                  <div>
+                    <span class="discount-price price  " style="font-size24; ">Rs. {{$productdata->price - ($productdata->discount * 0.01 *$productdata->price) }}</span>
+                    <span class="old-price price " style="font-size:14;"> Rs {{$productdata->price}} </span>
+                  </div>
+                  {{-- <p style="  border-radius:5px; font-size:15px; font-weight:bold; "> Price:<strike>Rs. {{$productdata->price}} MP</strike></p> --}}
+                  {{-- <p style="  border-radius:5px; font-size:15px; font-weight:bold; "> New Price:Rs. {{$productdata->price - ($productdata->discount * 0.01 *$productdata->price) }} </p> --}}
+                @else
+                  <p style="  border-radius:5px; font-size:15px; font-weight:bold; "> Price:Rs. {{$productdata->price}} MP</p>
+
+                @endif
+
+
   							</div>
 
 
@@ -250,7 +262,17 @@
   		<script src="{{ asset('js1/jquery.easing.min.js')}}"></script>
   		<script src="{{ asset('js1/scrolling-nav.js')}}"></script>
 
+<style>
 
+.price .old-price{
+  color:#747474;
+  text-decoration: line-through;
+}
+.price .discount-price{
+  color:#e31711;
+
+}
+</style>
 
 
 </body>
