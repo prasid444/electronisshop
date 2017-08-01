@@ -124,7 +124,7 @@
  <div class="col-md-3 col-sm-6 col-xs-12" style="padding-bottom:10px">
  <div class="col-item cbx-single-all">
  <div class="photo">
- <img  class="lazy" style="margin-left:1%; padding:10px 10px;" src="loading.gif" data-original="/images/products/{{$productdata->imagename}}" onerror="this.src='/images/products/default.jpg'"  alt="{{$productdata->title}}"/>
+ <img  class="lazy" style="margin-left:1%; padding:10px 10px;" src="/images/products/samsung-galaxy-pocket.jpg" data-original="/images/products/{{$productdata->imagename}}" onerror="this.src='/images/products/samsung-galaxy-pocket.jpg'"  alt="{{$productdata->title}}"/>
  </div>
  <div class="info">
  <div class="row">

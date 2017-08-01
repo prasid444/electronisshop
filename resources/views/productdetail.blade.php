@@ -84,8 +84,8 @@
                           <div class="row">
                               <div class="col-xs-12">
                                   <div class="lz-heading text-center">
-                                      <h1 class="lz-main-heading  wow bounceIn animated ">Mobile Repair</h1>
-                                      <p class="lz-sub-heading wow slideInRight">Puta y u such a noob</p>
+                                      <h1 class="lz-main-heading  wow bounceIn animated ">Mobile Shop</h1>
+                                      <p class="lz-sub-heading wow slideInRight">Product Details</p>
                                   </div>
                               </div>
                           </div> <!-- //ROW headertop-->

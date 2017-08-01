@@ -183,7 +183,7 @@
 function getResult(ticketNo){
   $.ajax({
     asyns:true,
-    type:'post',
+    type:'get',
     url:'/result/?ticketno='+ticketNo
 
   }).done(function (data){

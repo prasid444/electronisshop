@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Electronic Shop|Admin</title>
+    <title>Electronic Shop|User</title>
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,8 +36,8 @@
                   </button>
 
                   <!-- Branding Image -->
-                  <a class="navbar-brand" href="{{ url('/admin') }}">
-                        Admin
+                  <a class="navbar-brand" href="{{ url('/home') }}">
+                      User
                   </a>
               </div>
 
@@ -61,7 +61,7 @@
 
                               <ul class="dropdown-menu" role="menu">
                                   <li>
-                                      <a href="{{ route('admin.logout') }}"
+                                      <a href="{{ route('user.logout') }}"
                                           onclick="event.preventDefault();
                                                    document.getElementById('logout-form').submit();">
                                           Logout
@@ -89,40 +89,25 @@
               <div class="board-inner" >
               <ul class="nav nav-tabs" id="myTab" style="display:inline-flex;" >
 
-                <li  class="active" style="width: 170px;">
-                <a  href="sum" data-toggle="tab">
+                <li  class="active" style="width: 400px;">
+                <a  href="inf" data-toggle="tab">
                  <span class="btn btn-main btn-lg">
-                         <i class="glyphicon"><h6>Shop</h6></i>
+                         <i class="glyphicon"><h6>Information</h6></i>
                  </span>
              </a></li>
 
-               <li  style="width: 170px;">
-               <a  href="sum" data-toggle="tab">
+               <li  style="width: 400px">
+               <a  href="car" data-toggle="tab">
                 <span class="btn btn-main btn-lg">
-                        <i class="glyphicon"><h6>Summary</h6></i>
+                        <i class="glyphicon"><h6 align="center">Cart</h6></i>
                 </span>
             </a></li>
 
-            <li style="width: 170px;">
-              <a href="rep"  data-toggle="tab" >
-               <span class="btn btn-main btn-lg">
-                   <i class="glyphicon"><h6>Repairs</h6></i>
-               </span>
-     </a> </li>
 
-     <li  style="width: 170px;">
-       <a href="pro" data-toggle="tab">
-        <span class="btn btn-main btn-lg">
-            <i class="glyphicon"><h6>Products</h6></i>
-        </span>
-     </a> </li>
 
-     <li style="width: 170px;">
-       <a href="cus" data-toggle="tab" >
-        <span class="btn btn-main btn-lg">
-            <i class="glyphicon"><h6>Customers</h6></i>
-        </span>
-     </a> </li>
+
+
+
                </ul></div>
 
 

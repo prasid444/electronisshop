@@ -9,7 +9,8 @@ class RepairTicket extends Model
 
   protected $table="repairticket";
   protected $primaryKey="repairid";
-  
+
+
 
     //
 }

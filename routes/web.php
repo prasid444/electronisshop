@@ -41,6 +41,9 @@ Route::get('users/logout','Auth\LoginController@logoutuser')->name('user.logout'
 
 Route::prefix('admin')->group(function(){
   Route::get('/section/dash/','AdminController@changetab')->name('admin.change.section');
+  Route::get('/updateproduct/','AdminController@updateproduct')->name('admin.update.product');
+  Route::get('/updaterepairticket/','AdminController@updaterepairticket')->name('admin.update.repairticket');
+  Route::get('/addrepairticket/','AdminController@addrepairticket')->name('admin.add.repairticket');
 
 Route::get('/login','Auth\AdminLoginController@showLoginForm')->name('admin.login');
 Route::post('/login','Auth\AdminLoginController@login')->name('admin.login.submit');

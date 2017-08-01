@@ -8,7 +8,28 @@
   <input type="button" value="edit" />
 @endforeach
 </ul> --}}
+<div class="editdatacontent" >
+  @component('admin.repairticketedit')
+
+  @endcomponent
+
+</div>
+<div class="adddatacontent" >
+  @component('admin.newrepair')
+
+  @endcomponent
+
+</div>
+
 <table>
+  <tr>
+    <th colspan="6">
+
+    </th>
+    <th>
+      <Button class="btn btn-primary" onclick="addproduct('3')">Add New Ticket</Button>
+    </th>
+  </tr>
 <tr>
   <th>Ticket No.</th>
   <th>Customer  </th>
@@ -21,35 +42,41 @@
 
 
   @foreach ($repairtickets as $repairticket)
+    @if($repairticket->repairStatus=='done')
+      <tr style="background-color:#fda">
+      <td>{{$repairticket->repairid}}</td>
+      <td>{{$repairticket->customerid}}</td>
+      <td>{{$repairticket->repairModel}}</td>
+      <td>{{$repairticket->repairStatus}}</td>
+      <td>{{$repairticket->expectedCost}}</td>
+      <td>{{$repairticket->created_at}}</td>
+      <td>
+      <button class="btn btn-info" style="background-color:red" onclick="editproduct('{{$repairticket}} ',3)">Edit</button>
+
+      </td>
+      </tr>
+
+  @else
     <tr>
     <td>{{$repairticket->repairid}}</td>
     <td>{{$repairticket->customerid}}</td>
     <td>{{$repairticket->repairModel}}</td>
     <td>{{$repairticket->repairStatus}}</td>
     <td>{{$repairticket->expectedCost}}</td>
-    <td>{{$repairticket->repairDate}}</td>
+    <td>{{$repairticket->created_at}}</td>
     <td>
-    <button >Edit</button>
+    <button class="btn btn-info" onclick="editproduct('{{$repairticket}} ',3)">Edit</button>
+
     </td>
     </tr>
+  
+
+  @endif
+
   @endforeach
 
 </table>
 
 <style>
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
 
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}
-
-tr:nth-child(even) {
-    background-color: #dddddd;
-}
 </style>

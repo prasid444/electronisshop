@@ -9,6 +9,14 @@
 @endforeach
 </ul> --}}
 <table>
+  <tr>
+    <th colspan="5">
+
+    </th>
+    <th>
+      <Button class="btn btn-primary" onclick="alert('datafound')">New Customer</Button>
+    </th>
+  </tr>
 <tr>
   <th>Customer No.</th>
   <th>Name  </th>
@@ -27,7 +35,7 @@
     <td>{{$customerdata->customerContact1}}</td>
     <td>{{$customerdata->customerEmail}}</td>
     <td>{{$customerdata->customerAddress}}</td>
-    
+
     <td>
     <button >Edit</button>
     </td>
@@ -37,19 +45,5 @@
 </table>
 
 <style>
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
 
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}
-
-tr:nth-child(even) {
-    background-color: #dddddd;
-}
 </style>
