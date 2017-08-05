@@ -8,6 +8,19 @@
   <input type="button" value="edit" />
 @endforeach
 </ul> --}}
+
+<div class="editdatacontent" >
+  @component('admin.customeredit')
+
+  @endcomponent
+
+</div>
+<div class="adddatacontent" >
+  @component('admin.newcustomer')
+
+  @endcomponent
+
+</div>
 <table>
   <tr>
     <th colspan="5">

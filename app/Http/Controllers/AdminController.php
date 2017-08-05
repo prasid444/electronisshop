@@ -153,6 +153,10 @@ public function updaterepairticket(){
 }
 
 public function addrepairticket(){
+
+
+
+  
   $cid=Input::get('cid');
   //$rstatus=Input::get('rstatus');
   $rexpectedprice=Input::get('rexpectedprice');

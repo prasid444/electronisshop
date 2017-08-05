@@ -301,7 +301,7 @@ function changeTab(tabvalue){
 // });
 //
 function addproduct(tab){
-  console.log('you are in add product');
+  console.log('you are in add product'+tab);
   switch (tab) {
     case 1:
 
@@ -314,6 +314,7 @@ function addproduct(tab){
 
           break;
           case 4:
+          $('.productadder').trigger('reset');
 
             break;
     default:
@@ -404,10 +405,12 @@ $(document).on('submit','.producteditor',function(e){
 
   }).done(function(data){
     console.log('i am done in updating the products ');
-    $('.notificationtext').show();
-    $('.editdatacontent').fadeOut(2000);
-    $('.notificationtext').fadeOut(1000);
-     $(".dashcontainer").delay(3000).empty().html(data);
+
+     //$(".dashcontainer").empty().html(data);
+     $(".dashcontainer").empty().html(data);
+     $('.notificationtext').fadeIn(1000);
+     $('.notificationtext').fadeOut(2000);
+
 
 
   }) ;
@@ -446,10 +449,13 @@ $(document).on('submit','.repairticketeditor',function(e){
     // }
   }).done(function(data){
     console.log('i am done in updating the repairtickts ');
-    $('.notificationtext').show();
-    $('.editdatacontent').fadeOut(2000);
-    $('.notificationtext').fadeOut(1000);
+
+   //$('.editdatacontent').fadeOut(2000);
+
+    console.log('notification shows');
      $(".dashcontainer").empty().html(data);
+     $('.notificationtext').fadeIn(1000);
+     $('.notificationtext').fadeOut(2000);
 
 
   });
@@ -457,7 +463,26 @@ $(document).on('submit','.repairticketeditor',function(e){
 
 });
 
+$(document).on('submit','.productadder',function(e){
+  e.preventDefault();
+  console.log("submitted");
 
+  var formParams={};
+  $(this).serializeArray().forEach(function(item){
+    if (formParams[item.name]) {
+        formParams[item.name] = [formParams[item.name]];
+        formParams[item.name].push(item.value)
+      } else {
+        formParams[item.name] = item.value
+      }
+  });
+  console.log(formParams);
+
+
+
+
+  //console.log(.productmodel);
+});
 $(document).on('submit','.repairticketadder',function(e){
     e.preventDefault();
     //var rid=$('input[name="repairid"]').val();
@@ -490,10 +515,10 @@ $(document).on('submit','.repairticketadder',function(e){
       // }
     }).done(function(data){
       console.log('i am done in adding the repairtickts ');
-      $('.notificationtext').show();
-      $('.editdatacontent').fadeOut(2000);
-      $('.notificationtext').fadeOut(1000);
-       $(".dashcontainer").empty().html(data);
+      $(".dashcontainer").empty().html(data);
+      $('.notificationtext').fadeIn(1000);
+      $('.notificationtext').fadeOut(2000);
+;
 
 
     });
@@ -519,6 +544,10 @@ function togglehideshow(idname){
 
 <style>
 
+.adddatacontentdiv{
+
+  width: 80%;
+}
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
@@ -546,6 +575,7 @@ tr:nth-child(even) {
   top:15%;
   left:10%;
   width:50%;
+  height: 70%;
   display:none;
   overflow-y:scroll;
   overflow-x:hidden;
@@ -557,6 +587,7 @@ tr:nth-child(even) {
   top:15%;
   left:10%;
   width:50%;
+  height: 70%;
   display:none;
   overflow-y:scroll;
   overflow-x:hidden;
@@ -568,8 +599,7 @@ tr:nth-child(even) {
     overflow-y:scroll;
     overflow-x:hidden;
 }
-label { display: table-cell; }
-input { display: table-cell; }
+
 </style>
 
 

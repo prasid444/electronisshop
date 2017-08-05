@@ -18,9 +18,15 @@
 
 
 </div>
+<div class="adddatacontentdiv adddatacontent " style="width:80%;" >
+  @component('admin.newproduct')
+
+  @endcomponent
+
+</div>
 <div class='notificationtext' >
-  <p style="color:green;">
-    Data Added Successfully
+  <p style="color:green;font-size:3em;">
+    Product Updated Successfully
   </p>
 </div>
 <table>
@@ -29,7 +35,7 @@
 
     </th>
     <th>
-      <Button class="btn btn-primary" onclick="alert('datafound')">Add New Product</Button>
+      <Button class="btn btn-primary" onclick="addproduct('4')">Add New Product</Button>
     </th>
   </tr>
 <tr>
@@ -45,22 +51,40 @@
 
 
   @foreach ($productdatas as $productdata)
-    <tr>
-    <td>{{$productdata->productid}}</td>
-    <td>{{$productdata->title}}</td>
-    <td>{{$productdata->brand}}</td>
-    <td>
-      <img style="width:25%;" src="/images/products/{{$productdata->imagename}}" onerror="this.src='/images/products/default.jpg'"/>
+    @if ($productdata->stock<3)
+      <tr style="background-color:#fda">
+      <td>{{$productdata->productid}}</td>
+      <td>{{$productdata->title}}</td>
+      <td>{{$productdata->brand}}</td>
+      <td>
+        <img style="width:25%;" src="/images/products/{{$productdata->imagename}}" onerror="this.src='/images/products/default.jpg'"/>
+        </td>
+      <td>{{$productdata->price}}</td>
+      <td>{{$productdata->discount}}    </td>
+      <td>{{$productdata->stock}}</td>
+      <td>
+      <button class="producteditbutton" onclick="editproduct('{{$productdata}} ',4)">Edit</button>
       </td>
-    <td>{{$productdata->price}}</td>
-    <td>{{$productdata->discount}}    </td>
-    <td>{{$productdata->stock}}</td>
-    <td>
-    <button class="producteditbutton" onclick="editproduct('{{$productdata}} ',4)">Edit</button>
-    </td>
-    </tr>
+      </tr>
+    @else
+      <tr>
+      <td>{{$productdata->productid}}</td>
+      <td>{{$productdata->title}}</td>
+      <td>{{$productdata->brand}}</td>
+      <td>
+        <img style="width:25%;" src="/images/products/{{$productdata->imagename}}" onerror="this.src='/images/products/default.jpg'"/>
+        </td>
+      <td>{{$productdata->price}}</td>
+      <td>{{$productdata->discount}}    </td>
+      <td>{{$productdata->stock}}</td>
+      <td>
+      <button class="producteditbutton" onclick="editproduct('{{$productdata}} ',4)">Edit</button>
+      </td>
+      </tr>
+    @endif
+
   @endforeach
-  
+
 
 
 </table>

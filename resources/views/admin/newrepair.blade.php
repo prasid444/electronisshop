@@ -6,31 +6,31 @@
   <div>
     <input name="repairId" style="display:none" />
     <label>Customer id:</label>
-    <input required name="customerid" type="number" placeholder="custommer id" />
+    <input class="form-control" required name="customerid" type="number" placeholder="custommer id" />
   </div>
-<div>
+<div >
   <label>Model:</label>
-  <input required name="repairmodel" placeholder="Model" />
+  <input class="form-control" required name="repairmodel" placeholder="Model" />
 </div>
 <div>
   <label>Issue:</label>
-  <input required name="repairIssue" placeholder="Issue" />
+  <input class="form-control" required name="repairIssue" placeholder="Issue" />
 </div>
 <div>
   <label>Color:</label>
-  <input name="repairColor" placeholder="Color" />
+  <input class="form-control" name="repairColor" placeholder="Color" />
 </div>
 <div>
   <label>IMEI:</label>
-  <input name="repairImei" placeholder="IMEI" />
+  <input class="form-control" name="repairImei" placeholder="IMEI" />
 </div>
 <div>
   <label>Password:</label>
-  <input name="repairPassword" placeholder="Password" />
+  <input class="form-control" name="repairPassword" placeholder="Password" />
 </div>
 <div>
   <label>Expected Price:</label>
-  <input name="expectedCost" type="number" placeholder="Price" />
+  <input class="form-control" name="expectedCost" type="number" placeholder="Price" />
 </div>
 
 

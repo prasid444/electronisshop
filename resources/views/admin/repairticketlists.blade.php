@@ -20,7 +20,11 @@
   @endcomponent
 
 </div>
-
+<div class='notificationtext' >
+  <p style="color:green;font-size:3em">
+    Ticket Updated Successfully
+  </p>
+</div>
 <table>
   <tr>
     <th colspan="6">
@@ -69,7 +73,7 @@
 
     </td>
     </tr>
-  
+
 
   @endif
 
@@ -78,5 +82,6 @@
 </table>
 
 <style>
-
+/*label { display: table-cell; }
+input { display: table-cell; }*/
 </style>
