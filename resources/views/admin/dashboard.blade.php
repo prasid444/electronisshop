@@ -179,6 +179,7 @@
   <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}"></script>
 
+<script src="/js/bootstrap.js" type="text/javascript"></script>
 <script src="/js/jquery-3.2.1.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -236,6 +237,7 @@ function changeTab(tabvalue){
       url:'/admin/section/dash/?tab='+tabvalue,
       headers: { 'X-CSRF-Token' : $('meta[name=carf-token]').attr('content') },
       //dataType:'html',
+      //dataType:'json',
 
     //  data:{tab: tabvalue},
 
@@ -252,7 +254,8 @@ function changeTab(tabvalue){
   }).done(function (data){
 
          $(".dashcontainer").empty().html(data);
-        // console.log(data);
+        // data=JSON.parse(data);
+        //console.log(data);
          console.log("hey i got the data to change tab value");
      });
 
@@ -323,6 +326,42 @@ function addproduct(tab){
   $('.adddatacontent').show();
 }
 
+function deleteproduct(id,tab){
+  console.log("tab is:"+tab+" and id is "+id);
+  switch (tab) {
+    case 1:
+
+      break;
+      case 2:
+
+        break;
+        case 3:
+        console.log("you are in deleteing repair ticket state");
+        $.ajax({
+          asyns:true,
+          type:'get',
+          url:'/admin/deleterepairticket/',
+          data:{rid:id},
+          headers: { 'X-CSRF-Token' : $('meta[name=carf-token]').attr('content') },
+
+
+        }).done(function(data){
+          console.log('returned after deleting');
+          $(".dashcontainer").empty().html(data);
+        });
+
+
+
+          break;
+          case 4:
+          console.log('you are in deleting product state');
+            break;
+    default:
+    break;
+
+  }
+}
+
 function editproduct(data,tab){
 
   //alert(data);
@@ -356,7 +395,7 @@ switch (tab) {
           $('input[name="pstock"]').val(data.stock);
           $('input[name="pbrand"]').val(data.brand);
           $('input[name="pram"]').val(data.RamSize);
-          $('input[name="pandroidversion"]').val(data.Osvalue);
+          $('.osselect').val(data.osid);
           $('input[name="pinternal"]').val(data.InternalSize);
           $('input[name="pprimarycamera"]').val(data.PrimaryMP);
         break;
@@ -390,9 +429,10 @@ $(document).on('submit','.producteditor',function(e){
   var pstock=$('input[name="pstock"]').val();
   var pbrand=$('input[name="pbrand"]').val();
   var pram=$('input[name="pram"]').val();
-  var pandroidversion=$('input[name="pandroidversion"]').val();
+  var pandroidversion=$('.osselect').val();
   var pinternal=$('input[name="pinternal"]').val();
   var pprimarycamera=$('input[name="pprimarycamera"]').val();
+  console.log(pandroidversion);
 
   $.ajax({
     asyns:true,
@@ -572,25 +612,27 @@ tr:nth-child(even) {
   position:fixed;
   background-color:#dfd;
   z-index:1;
-  top:15%;
+  top:9%;
   left:10%;
   width:50%;
-  height: 70%;
+  height: 90%;
   display:none;
-  overflow-y:scroll;
+  overflow-y: auto;
   overflow-x:hidden;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0
 }
 .adddatacontent{
   position:fixed;
   background-color:#dfd;
   z-index:1;
-  top:15%;
+  top:9%;
   left:10%;
   width:50%;
-  height: 70%;
+  height: 90%;
   display:none;
-  overflow-y:scroll;
+  overflow-y:auto;
   overflow-x:hidden;
+   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0
 }
 .fixed-content {
     top: 0;
@@ -599,7 +641,9 @@ tr:nth-child(even) {
     overflow-y:scroll;
     overflow-x:hidden;
 }
-
+.input-group{
+  margin-top: 10px;
+}
 </style>
 
 

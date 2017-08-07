@@ -10,7 +10,7 @@
 </ul> --}}
 <div class="editdatacontent" style=>
   <div  >
-    @component('admin.productedit')
+    @component('admin.productedit',['osdatas'=>$osdatas])
 
     @endcomponent
   </div>
@@ -18,12 +18,16 @@
 
 
 </div>
-<div class="adddatacontentdiv adddatacontent " style="width:80%;" >
-  @component('admin.newproduct')
+
+
+<div  class=" adddatacontent " style="width:80%;" >
+  @component('admin.newproduct',['osdatas'=>$osdatas])
 
   @endcomponent
 
 </div>
+
+
 <div class='notificationtext' >
   <p style="color:green;font-size:3em;">
     Product Updated Successfully
@@ -78,7 +82,7 @@
       <td>{{$productdata->discount}}    </td>
       <td>{{$productdata->stock}}</td>
       <td>
-      <button class="producteditbutton" onclick="editproduct('{{$productdata}} ',4)">Edit</button>
+      <button class="producteditbutton"  onclick="editproduct('{{$productdata}} ',4)">Edit</button>
       </td>
       </tr>
     @endif

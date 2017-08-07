@@ -55,7 +55,8 @@
       <td>{{$repairticket->expectedCost}}</td>
       <td>{{$repairticket->created_at}}</td>
       <td>
-      <button class="btn btn-info" style="background-color:red" onclick="editproduct('{{$repairticket}} ',3)">Edit</button>
+      <button class="btn btn-info" style="background-color:lightgreen" onclick="editproduct('{{$repairticket}} ',3)">Edit</button>
+      <button class="btn btn-danger" onclick="deleteproduct('{{$repairticket->repairid}}',3)">Delete</button>
 
       </td>
       </tr>
@@ -70,6 +71,7 @@
     <td>{{$repairticket->created_at}}</td>
     <td>
     <button class="btn btn-info" onclick="editproduct('{{$repairticket}} ',3)">Edit</button>
+    <button class="btn btn-danger" onclick="deleteproduct('{{$repairticket->repairid}}',3)">Delete</button>
 
     </td>
     </tr>

@@ -1,10 +1,12 @@
-
+{{-- <div class="mymodal"> --}}
+  {{-- <div class="mymodal-content"> --}}
+    {{-- <span class="myclose">&times;</span> --}}
 
 
 <form class="productadder" name="newproductform" method="post">
-  <h3 align="center" class="label-primary">Add Product</h3>
+  {{-- <h3 align="center" class="label-primary">Add Product</h3> --}}
 
-<div class="productaddercontainer" >
+<div class="productaddercontainer"  style="margin-top:10px">
 <div class="leftside form-group col-xs-6">
 <div>
 
@@ -26,6 +28,15 @@
 
   </div>
   <div class="input-group">
+    <span class="input-group-addon">OS</span>
+  <select class="osselect selector form-control" name="osselect">
+
+      @foreach ($osdatas as $osdata)
+        <option value="{{$osdata->osid}}">{{$osdata->osname}}({{$osdata->osvalue}})</option>
+      @endforeach
+  </select>
+</div>
+  <div class="input-group">
     <span class="input-group-addon">Internal Memory</span>
     <input type="number" name="productinternalmemory" class="form-control" placeholder="in GB">
 
@@ -37,13 +48,33 @@
   </div>
   <div class="input-group">
     <span class="input-group-addon">Price</span>
-    <input type="text" name="producprice" class="form-control" placeholder="Price(RS)">
+    <input type="number" name="producprice" class="form-control" placeholder="Price(RS)">
 
   </div>
+  <div class="input-group">
+    <span class="input-group-addon">Discount</span>
+    <input type="number" name="producdiscount" min="0" max="100"class="form-control" placeholder="Price(RS)">
 
+  </div>
+  <div class="input-group">
+    <span class="input-group-addon">Primary Camera</span>
+    <input type="number" name="productprimarycamera" class="form-control" placeholder="Back Camera detail">
+  </div>
+  <div class="input-group">
+    <span class="input-group-addon">Weight</span>
+    <input type="number" name="productweight" class="form-control" placeholder="Weight(in gm)">
+
+
+  </div>
+  <div class="input-group">
+    <span class="input-group-addon">Screen Size</span>
+    <input type="float" name="productscreen" class="form-control" placeholder="In inches">
+
+
+  </div>
 </div>
 
-</div>
+
 <div class="rightside form-group col-xs-6">
 <div class="input-group">
   <span class="input-group-addon">Secondary Camera</span>
@@ -61,6 +92,18 @@
   <input type="text" name="productmultitouch" class="form-control" placeholder="multitouchoption">
 
 </div>
+<div class="input-group">
+  <span class="input-group-addon">CPU</span>
+  <input type="text" name="productcpu" class="form-control" placeholder="CPU detail">
+
+
+</div>
+<div class="input-group">
+  <span class="input-group-addon">GPU</span>
+  <input type="text" name="productgpu" class="form-control" placeholder="GPU detail">
+
+
+</div>
 
 
 </div>
@@ -74,10 +117,18 @@
 
   {{-- <input name="data"  type="date" placeholder="date" /> --}}
 
+</div>
+<div style="position:absolute;right:5%;top:90%;">
 
+  <input type="submit" class="btn btn-primary" value="Save" />
 
-  <input type="submit" value="Save" />
-  <button type="button" onclick="hideproduct()" >Cancel</button>
-
+  <button type="button" class="btn btn-danger" onclick="hideproduct()" >Cancel</button>
+</div>
 
 </form>
+</div>
+</div>
+<style>
+
+
+</style>

@@ -11,6 +11,7 @@ use Log;
 use App;
 
 
+
 class AdminController extends Controller{
 
 
@@ -51,9 +52,12 @@ public function changetab()
 
     case 'pro':
     $productdatas=App\Product::orderBy('productid','desc')->get();
+    $osdatas=App\OS::orderBy('osid','asc')->get();
+
+    //return $productdatas;
     //$msg = "<h1>This is a simple message.</h1>";
     //return View::make('admin/repaiticketlists')->with(compact('repairtickets'));
-    return view('admin.productslists')->with(compact('productdatas'))->render();
+    return view('admin.productslists')->with(compact('productdatas'))->with(compact('osdatas'))->render();
     break;
 
     case 'cus':
@@ -104,7 +108,7 @@ public function updateproduct(){
                                                           'stock'=>$pstock,
                                                           'brand'=>$pbrand,
                                                           'RamSize'=>$pram,
-                                                          'Osvalue'=>$pandroidversion,
+                                                          'osid'=>$pandroidversion,
                                                           'InternalSize'=>$pinternal,
                                                           'PrimaryMP'=>$pprimarycamera,
 
@@ -113,9 +117,10 @@ public function updateproduct(){
 
 
 $productdatas=App\Product::orderBy('productid','desc')->get();
+$osdatas=App\OS::orderBy('osid','asc')->get();
 //$msg = "<h1>This is a simple message.</h1>";
 //return View::make('admin/repaiticketlists')->with(compact('repairtickets'));
-return view('admin.productslists')->with(compact('productdatas'))->render();
+return view('admin.productslists')->with(compact('productdatas'))->with(compact('osdatas'))->render();
 
 
 
@@ -156,7 +161,7 @@ public function addrepairticket(){
 
 
 
-  
+
   $cid=Input::get('cid');
   //$rstatus=Input::get('rstatus');
   $rexpectedprice=Input::get('rexpectedprice');
@@ -208,6 +213,7 @@ public function removeproduct(){
 
 
 }
+
 
 
 

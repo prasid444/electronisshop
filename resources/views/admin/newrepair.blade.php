@@ -1,44 +1,70 @@
-<div>
+
 
 
 <form class="repairticketadder" name="newrepairform" method="post">
   <h3 align="center">Add Repair Ticket</h3>
   <div>
+
+
+  <div >
+
+
+  <div>
     <input name="repairId" style="display:none" />
-    <label>Customer id:</label>
-    <input class="form-control" required name="customerid" type="number" placeholder="custommer id" />
   </div>
-<div >
-  <label>Model:</label>
-  <input class="form-control" required name="repairmodel" placeholder="Model" />
-</div>
-<div>
-  <label>Issue:</label>
-  <input class="form-control" required name="repairIssue" placeholder="Issue" />
-</div>
-<div>
-  <label>Color:</label>
-  <input class="form-control" name="repairColor" placeholder="Color" />
-</div>
-<div>
-  <label>IMEI:</label>
-  <input class="form-control" name="repairImei" placeholder="IMEI" />
-</div>
-<div>
-  <label>Password:</label>
-  <input class="form-control" name="repairPassword" placeholder="Password" />
-</div>
-<div>
-  <label>Expected Price:</label>
-  <input class="form-control" name="expectedCost" type="number" placeholder="Price" />
-</div>
+  <div class="input-group">
+    <span class="input-group-addon">Customer ID</span>
+    <input required type="number" name="customerid" class="form-control" placeholder="Customer Id">
 
 
+  </div>
+  <div class="input-group">
+    <span class="input-group-addon">Model</span>
+    <input required type="text" name="repairmodel" class="form-control" placeholder="Model Name">
+
+
+  </div>
+  <div class="input-group">
+    <span class="input-group-addon">Description</span>
+    <input required type="text" name="repairIssue" class="form-control" placeholder="Issue">
+
+
+  </div>
+  <div class="input-group">
+    <span class="input-group-addon">Color</span>
+    <input  type="text" name="repairColor" class="form-control" placeholder="Color of model">
+
+
+  </div>
+  <div class="input-group">
+    <span class="input-group-addon">IMEI</span>
+    <input  type="text" name="repairImei" class="form-control" placeholder="IMEI">
+
+
+  </div>
+  <div class="input-group">
+    <span class="input-group-addon">Password</span>
+    <input type="text" name="repairPassword" class="form-control" placeholder="Password if any">
+
+
+  </div>
+  <div class="input-group">
+    <span class="input-group-addon">Expected Price</span>
+    <input  type="number" name="expectedCost" class="form-control" placeholder="Price expecter(RS)">
+
+
+  </div>
+
+
+</div>
   {{-- <input name="data"  type="date" placeholder="date" /> --}}
+<div style="position:absolute;right:5%;top:90%;">
 
-  <input type="submit" value="Save" />
-  <button type="button" onclick="hideproduct()" >Cancel</button>
+  <input class="btn btn-primary" type="submit" value="Save" />
+  <button type="button" class="btn btn-danger" onclick="hideproduct()" >Cancel</button>
+</div>
+
+</div>
 
 
 </form>
-</div>
