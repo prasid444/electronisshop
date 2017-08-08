@@ -101,7 +101,7 @@
   	    	<div class="container1">
   				<div class="row">
   				<div class="col-sm-3">
-  				<img class="img-responsive" src="/images/products/{{$productdata->imagename}}" onerror="this.src='/images/products/default.jpg'"  alt="{{$productdata->title}}">
+  				<img class="img-responsive" src="/images/products/{{$productdata->imagename}}" onerror="this.src='/images/products/default.jpg'"  width="200%" alt="{{$productdata->title}}">
   				</div>
   				<div class="col-sm-6" style=" margin-bottom:30px;  border-radius:5px;">
   						<h2>{{$productdata->title}} </h2>

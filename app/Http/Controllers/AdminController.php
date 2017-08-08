@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Input;
 
 use Log;
 use App;
-
-
+use DB;
+use Image;
 
 class AdminController extends Controller{
 
@@ -46,7 +46,15 @@ public function changetab()
     //$repairtickets=App\RepairTicket::all();
     //$msg = "<h1>This is a simple message.</h1>";
     //return View::make('admin/repaiticketlists')->with(compact('repairtickets'));
-    return view('dummy')->with('data','summary')->render();
+    $repairstatus=App\RepairTicket::selectRaw('repairStatus,count(repairStatus) as total')->groupBy('repairStatus')->get();
+
+    //$osstatus=App\OS::selectRaw('osvalue,osname,p.total')->join('product2','product2.osid','=','osnames.osid')->groupBy('osid')->get();
+    //$osstatusp1=App\Product::selectRaw('osid,count(osid) as total')->groupBy('osid')->get();
+    //$osstatusp2=App\OS::all();
+    $osstatus=DB::select('SELECT o.osvalue,o.osname,p.total FROM osnames as o natural JOIN (SELECT osid, COUNT(osid) as total FROM product2 GROUP by osid ) as p');
+  //  $osstatus=$osstatusp1->union($osstatusp2)->get();
+    //return $da;
+    return view('admin.summarystatus')->with(compact('repairstatus'))->with(compact('osstatus'))->render();
 
     break;
 
@@ -87,6 +95,7 @@ public function changetab()
 
 
 }
+
 
 public function updateproduct(){
   $pid=Input::get('pid');
@@ -190,6 +199,62 @@ public function addrepairticket(){
 
 }
 
+public function addCustomer(Request $request){
+//   $cdata=Input::all();
+//return $cdata;
+  $cfname=Input::get('cfname');
+  $cmname=Input::get('cmname');
+  $clname=Input::get('clname');
+  $ccontact1=Input::get('ccontact1');
+  $cemail=Input::get('cemail');
+  $caddress=Input::get('caddress');
+
+  $adddata=App\Customer::insertGetId(array(
+
+                                          //'customerid'=>4,
+                                          'customerFirstName'=>$cfname,
+                                          'customerMiddleName'=>$cmname,
+                                          'customerLastName'=>$clname,
+                                          'customerContact1'=>$ccontact1,
+                                          'customerEmail'=>$cemail,
+                                          'customerAddress'=>$caddress,
+
+  ));
+
+  $customerdatas=App\Customer::orderBy('customerid','desc')->get();
+  //$msg = "<h1>This is a simple message.</h1>";
+  //return View::make('admin/repaiticketlists')->with(compact('repairtickets'));
+  return view('admin.customerslists')->with(compact('customerdatas'))->render();
+
+}
+public function addProduct(Request $request){
+
+  // $this->validate($request,[
+  //   'productmodel'=>'required',
+  //   'productfile'=>'required|image|mimes:jpeg,png,jpg,svg|max:2048',
+  //   'productbrand'=>'required',
+  // ]);
+
+
+  if($file=$request->file('productfile')){
+    $name=$file->getClientOriginalName();
+    $file->move('images',$name);
+  }
+
+
+
+
+
+  $productdatas=App\Product::orderBy('productid','desc')->get();
+  $osdatas=App\OS::orderBy('osid','asc')->get();
+  //$msg = "<h1>This is a simple message.</h1>";
+  //return View::make('admin/repaiticketlists')->with(compact('repairtickets'));
+  return view('admin.productslists')->with(compact('productdatas'))->with(compact('osdatas'))->render();
+
+
+
+}
+
 public function removerepairticket(){
   $rid=Input::get('rid');
 
@@ -198,6 +263,17 @@ public function removerepairticket(){
   //$msg = "<h1>This is a simple message.</h1>";
   //return View::make('admin/repaiticketlists')->with(compact('repairtickets'));
   return view('admin.repairticketlists')->with(compact('repairtickets'))->render();
+
+
+}
+
+public function removeCustomer(){
+  $cid=Input::get('cid');
+  $deletedata=App\Customer::where('customerid',$cid)->delete();
+  $customerdatas=App\Customer::orderBy('customerid','desc')->get();
+  //$msg = "<h1>This is a simple message.</h1>";
+  //return View::make('admin/repaiticketlists')->with(compact('repairtickets'));
+  return view('admin.customerslists')->with(compact('customerdatas'))->render();
 
 
 }

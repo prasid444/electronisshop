@@ -45,6 +45,9 @@ Route::prefix('admin')->group(function(){
   Route::get('/updaterepairticket/','AdminController@updaterepairticket')->name('admin.update.repairticket');
   Route::get('/addrepairticket/','AdminController@addrepairticket')->name('admin.add.repairticket');
   Route::get('/deleterepairticket/','AdminController@removerepairticket')->name('admin.delete.repairticket');
+  Route::get('/addproduct/','AdminController@addProduct');
+  Route::get('/addcustomer/','AdminController@addCustomer');
+  Route::get('/deletecustomer/','AdminController@removeCustomer');
 
 Route::get('/login','Auth\AdminLoginController@showLoginForm')->name('admin.login');
 Route::post('/login','Auth\AdminLoginController@login')->name('admin.login.submit');

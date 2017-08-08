@@ -82,7 +82,7 @@
       @yield('content')
   </div>
 
-  <div class="container1 col-sm-8" >
+  <div class="container1 col-sm-9" >
       <div class="row" >
           <div class="board" style="padding-left:80px;">
               <!-- <h2>Welcome to IGHALO!<sup>�</sup></h2>-->
@@ -90,7 +90,7 @@
               <ul class="nav nav-tabs" id="myTab" style="display:inline-flex;" >
 
                 <li  class="active" style="width: 170px;">
-                <a  href="sum" data-toggle="tab">
+                <a  href="shp" data-toggle="tab">
                  <span class="btn btn-main btn-lg">
                          <i class="glyphicon"><h6>Shop</h6></i>
                  </span>
@@ -127,6 +127,10 @@
 
 
                <div class="tab-content col-md-12 dashboardcontent" style="text-align:center;">
+                 <div class="aboutshop">
+                     <h1>This is about shop</h1>
+
+                 </div>
                  <div class="dashcontainer" style="position:relative">
 
                  </div>
@@ -181,7 +185,8 @@
 
 <script src="/js/bootstrap.js" type="text/javascript"></script>
 <script src="/js/jquery-3.2.1.js" type="text/javascript"></script>
-
+<script src="/js/Chart.bundle.js" type="text/javascript"></script>
+<script src="/js/Chart.js" type="text/javascript"></script>
 <script type="text/javascript">
 
 
@@ -223,8 +228,15 @@ $(document).ready(function(){
         var tabvalue=$(this).attr('href');
         console.log(tabvalue);
 
+        if(tabvalue=='shp'){
+          $('.dashcontainer').empty();
+          $(".aboutshop").show();
+        }
+        else {
+            $(".aboutshop").hide();
+            changeTab(tabvalue);
+        }
 
-    changeTab(tabvalue);
     });
 });
 
@@ -257,6 +269,11 @@ function changeTab(tabvalue){
         // data=JSON.parse(data);
         //console.log(data);
          console.log("hey i got the data to change tab value");
+         if(tabvalue=='sum'){
+           console.log('you are in summary');
+           console.log(data);
+         }
+
      });
 
     //  error: function(err){
@@ -320,6 +337,8 @@ function addproduct(tab){
           $('.productadder').trigger('reset');
 
             break;
+            case 5:
+            $('.customeradder').trigger('reset');
     default:
     break;
   }
@@ -356,6 +375,22 @@ function deleteproduct(id,tab){
           case 4:
           console.log('you are in deleting product state');
             break;
+
+            case 5:
+              console.log('ypu are now in delete customer state');
+              $.ajax({
+                asyns:true,
+                type:'get',
+                url:'/admin/deletecustomer/',
+                data:{cid:id},
+                headers: { 'X-CSRF-Token' : $('meta[name=carf-token]').attr('content') },
+
+
+              }).done(function(data){
+                console.log('returned after deleting');
+                $(".dashcontainer").empty().html(data);
+              });
+              break;
     default:
     break;
 
@@ -399,6 +434,18 @@ switch (tab) {
           $('input[name="pinternal"]').val(data.InternalSize);
           $('input[name="pprimarycamera"]').val(data.PrimaryMP);
         break;
+        case 5:
+          $('.customereditor').trigger('reset');
+          $('input[name="customerid"]').val(data.customerid);
+          $('input[name="cfname"]').val(data.customerFirstName);
+          $('input[name="cmname"]').val(data.customerMiddleName);
+          $('input[name="clname"]').val(data.customerLastName);
+          $('input[name="ccontact1"]').val(data.customerContact1);
+          $('input[name="cemaile"]').val(data.customerEmail);
+          $('input[name="caddress"]').val(data.customerAddress);
+
+        break;
+
   default:
   break;
 
@@ -507,15 +554,30 @@ $(document).on('submit','.productadder',function(e){
   e.preventDefault();
   console.log("submitted");
 
-  var formParams={};
-  $(this).serializeArray().forEach(function(item){
-    if (formParams[item.name]) {
-        formParams[item.name] = [formParams[item.name]];
-        formParams[item.name].push(item.value)
-      } else {
-        formParams[item.name] = item.value
-      }
-  });
+  // var formParams={};
+  // $(this).serializeArray().forEach(function(item){
+  //   if (formParams[item.name]) {
+  //       formParams[item.name] = [formParams[item.name]];
+  //       formParams[item.name].push(item.value)
+  //     } else {
+  //       formParams[item.name] = item.value
+  //     }
+  // });
+  var formParams=$(this).serialize();
+  $.ajax({
+    asyns:true,
+    url:'/admin/addproduct/?'+formParams+'&productfile='+$('#productfile').val(),
+    headers: { 'X-CSRF-Token' : $('meta[name=carf-token]').attr('content') },
+
+    error:function(err){
+      console.log(err);
+    },
+  }).done(function(data){
+
+    $(".dashcontainer").empty().html(data);
+    $('.notificationtext').fadeIn(1000);
+    $('.notificationtext').fadeOut(2000);
+    });
   console.log(formParams);
 
 
@@ -555,6 +617,49 @@ $(document).on('submit','.repairticketadder',function(e){
       // }
     }).done(function(data){
       console.log('i am done in adding the repairtickts ');
+      $(".dashcontainer").empty().html(data);
+      $('.notificationtext').fadeIn(1000);
+      $('.notificationtext').fadeOut(2000);
+
+
+
+    });
+});
+
+
+$(document).on('submit','.customeradder',function(e){
+    e.preventDefault();
+    //var rid=$('input[name="repairid"]').val();
+    //var rstatus=$('input[name="rstatus"]').val();
+    //var cid=$('.customeradder input[name="customerid"]').val();
+    var cfname=$('.customeradder input[name="cfname"]').val();
+    var cmname=$('.customeradder input[name="cmname"]').val();
+    var clname=$('.customeradder input[name="clname"]').val();
+    var ccontact1=$('.customeradder input[name="ccontact1"]').val();
+    var cemail=$('.customeradder input[name="cemail"]').val();
+    var caddress=$('.customeradder input[name="caddress"]').val();
+
+
+
+
+    $.ajax({
+      asyns:true,
+      type:'get',
+      url:'/admin/addcustomer/',
+      data:{cfname:cfname,cmname:cmname,clname:clname,ccontact1:ccontact1,cemail:cemail,caddress:caddress},
+
+      headers: { 'X-CSRF-Token' : $('meta[name=carf-token]').attr('content') },
+      //dataType:'JSON',
+      // success:function(data){
+      //   console.log('got it');
+      // },
+      // error:function(da){
+      //   console.error('opppss');
+      //   console.log(da);
+      // }
+    }).done(function(data){
+      console.log('i am done in adding the customers ');
+      //console.log(data);
       $(".dashcontainer").empty().html(data);
       $('.notificationtext').fadeIn(1000);
       $('.notificationtext').fadeOut(2000);

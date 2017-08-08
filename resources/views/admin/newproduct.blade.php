@@ -4,6 +4,7 @@
 
 
 <form class="productadder" name="newproductform" method="post">
+
   {{-- <h3 align="center" class="label-primary">Add Product</h3> --}}
 
 <div class="productaddercontainer"  style="margin-top:10px">
@@ -11,7 +12,7 @@
 <div>
 
     <span class="input-group-addon">Image</span>
-    <input name="productfile" type="file" accept="image/jpeg, image/png" />
+    <input name="productfile" id="productfile" type="file" accept="image/jpeg, image/png" />
   </div>
 
 

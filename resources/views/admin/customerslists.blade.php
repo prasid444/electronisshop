@@ -21,13 +21,13 @@
   @endcomponent
 
 </div>
-<table>
+<table style="width:100%;">
   <tr>
     <th colspan="5">
 
     </th>
     <th>
-      <Button class="btn btn-primary" onclick="alert('datafound')">New Customer</Button>
+      <Button class="btn btn-primary" onclick="addproduct('5');">New Customer</Button>
     </th>
   </tr>
 <tr>
@@ -50,7 +50,8 @@
     <td>{{$customerdata->customerAddress}}</td>
 
     <td>
-    <button >Edit</button>
+    <button class="btn btn-primary" onclick="editproduct('{{$customerdata}}',5)">Edit</button>
+    <button class="btn btn-danger" onclick="deleteproduct('{{$customerdata->customerid}}',5)">Delete</button>
     </td>
     </tr>
   @endforeach
