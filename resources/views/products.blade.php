@@ -36,6 +36,8 @@
   <!-- Custom Fonts -->
   {{-- <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"> --}}
          <link rel="stylesheet" href="{{ asset('css/style.css')}}" media="all" />
+         <link rel="stylesheet" href="{{ asset('css1/theme.css')}}" media="all" />
+         <link rel="stylesheet" href="{{ asset('css1/main.css')}}" media="all" />
 
       <link rel="stylesheet" id="lz-switcher-style" href="{{ asset('css/switcher-default.css')}}" media="all" />
 
@@ -62,9 +64,109 @@
 
 <link href="/css/bootstrap.css" rel="stylesheet" />
 
+
+
+
+
+<link href="css1/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" href="css1/bootstrap-responsive.css">
+
+<!-- Custom Css -->
+
+
+<link rel="stylesheet" href="{{ asset('css1/custom-styles.css')}}">
+<link rel="stylesheet" href="{{ asset('css/animate.css')}}" media="all"  />
+<link href="{{ asset('css1/main.css')}}" rel="stylesheet">
+<link href="{{ asset('css1/style.css')}}" rel="stylesheet" type="text/css" media="all" />
+<link href="{{ asset('css1/theme.css')}}" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('css2/main.css')}}">
+<link href="{{ asset('css2/custom.css')}}" rel="stylesheet">
+<link href="{{ asset('css1/styled.css')}}" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('css1/custom-styles.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}" media="all" />
+      <link rel="stylesheet" href="{{ asset('css2/bootstrap.css')}}" media="all" />
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css')}}" media="all" />
+      <link href="{{ asset('css/theme2.css')}}" rel="stylesheet">
+       <link href="{{ asset('css2/style.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css')}}" media="all" />  '
+
+      <link rel="stylesheet" href="{{ asset('css/social.css')}}">
+     {{-- <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css"> --}}
+       {{-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script> --}}
+
+
+<!-- Custom Fonts -->
+{{-- <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"> --}}
+       <link rel="stylesheet" href="{{ asset('css/style.css')}}" media="all" />
+
+    <link rel="stylesheet" id="lz-switcher-style" href="{{ asset('css/switcher-default.css')}}" media="all" />
+
+
+    <script src="{{ asset('js/vendor/modernizr-2.6.2.min.js')}}"></script>
+
 </head>
 
 <body>
+  <div class="cblzbody-wrapper">
+  <header>
+  <nav class="navbar navbar-custom navbar-fixed-top" role="navigation" style="padding-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+<div class="container">
+
+<div class="navbar-header">
+<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+<i class="fa fa-bars"></i>
+</button>
+<a class="navbar-brand" href="#">Mobile Repair</a>
+</div>
+
+<!-- Collect the nav links, forms, and other content for toggling -->
+<div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+ <ul class="nav navbar-nav navbar-right">
+   <li class=""><a href="../">HOME</a> </li>
+   <li class=""><a href="/products">STORE</a> </li>
+   <li class=""><a href="#">CONTACT US</a> </li>
+   <li class=""><a href="#">CART<span class="badge">1</span></a></li>
+   <!-- Right Side Of Navbar -->
+   <ul class="nav navbar-nav navbar-right">
+       <!-- Authentication Links -->
+       @if (Auth::guest())
+           <li><a href="{{ route('login') }}">Login</a></li>
+           <li><a href="{{ route('register') }}">Register</a></li>
+       @else
+           <li class="dropdown">
+               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                   {{ Auth::user()->name }} <span class="caret"></span>
+               </a>
+
+               <ul class="dropdown-menu" role="menu">
+                   <li>
+                       <a href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                           Logout
+                       </a>
+
+                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                           {{ csrf_field() }}
+                       </form>
+                   </li>
+               </ul>
+           </li>
+       @endif
+   </ul>
+
+ </ul>
+</div>
+<!-- /.navbar-collapse -->
+</div>
+<!-- /.container -->
+</nav>
+
+
+<!-- Intro Header -->
+
+  </header>
+
 
   <div class="filter">
 

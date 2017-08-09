@@ -1,6 +1,6 @@
 <head>
 
-<title>{{$productdata->title}}</title>
+<title>{{$productdata[0]->title}}</title>
 <link href = "css/bootstrap.css" rel = "stylesheet">
 
 <meta charset="utf-8">
@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Title here -->
-
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
 <!-- Bootstrap Core CSS -->
 <link href="css1/bootstrap.css" rel="stylesheet">
@@ -67,8 +67,36 @@
   		     <li class=""><a href="../">HOME</a> </li>
            <li class=""><a href="/products">STORE</a> </li>
   			   <li class=""><a href="#">CONTACT US</a> </li>
-  			   <li class=""><a href="#">REPAIR</a> </li>
-  			   <li class=""><a href="#">CONTACT</a> </li>
+           <li class=""><a href="/home">CART<span class="badge">1</span></a></li>
+           <!-- Right Side Of Navbar -->
+           <ul class="nav navbar-nav navbar-right">
+               <!-- Authentication Links -->
+               @if (Auth::guest())
+                   <li><a href="{{ route('login') }}">Login</a></li>
+                   <li><a href="{{ route('register') }}">Register</a></li>
+               @else
+                   <li class="dropdown">
+                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                           {{ Auth::user()->name }} <span class="caret"></span>
+                       </a>
+
+                       <ul class="dropdown-menu" role="menu">
+                           <li>
+                               <a href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                   Logout
+                               </a>
+
+                               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                   {{ csrf_field() }}
+                               </form>
+                           </li>
+                       </ul>
+                   </li>
+               @endif
+           </ul>
+
   		   </ul>
   	</div>
   	<!-- /.navbar-collapse -->
@@ -101,24 +129,35 @@
   	    	<div class="container1">
   				<div class="row">
   				<div class="col-sm-3">
-  				<img class="img-responsive" src="/images/products/{{$productdata->imagename}}" onerror="this.src='/images/products/default.jpg'"  width="200%" alt="{{$productdata->title}}">
+  				<img class="img-responsive" src="/images/products/{{$productdata[0]->imagename}}" onerror="this.src='/images/products/default.jpg'"  width="200%" alt="{{$productdata[0]->title}}">
   				</div>
   				<div class="col-sm-6" style=" margin-bottom:30px;  border-radius:5px;">
-  						<h2>{{$productdata->title}} </h2>
-  						<h3> {{$productdata->brand}}</h3>
-  						<div  style=" background-color:#c3c3c3; border-radius:5px; margin-left:20px; margin:0px 20px 20px 20px ; padding: 20px" >
-  							<p style="  border-radius:5px; font-size:15px; font-weight:bold;"> Screen:{{$productdata->Sizeinch}}"</p>
-  							<p style="  border-radius:5px; font-size:15px; font-weight:bold;"> Android:{{$productdata->Osvalue}}</p>
-  							<p style="  border-radius:5px; font-size:15px; font-weight:bold; "> RAM:{{$productdata->RamSize}} GB</p>
-                @if ($productdata->discount >0)
-                  <div>
-                    <span class="discount-price price  " style="font-size24; ">Rs. {{$productdata->price - ($productdata->discount * 0.01 *$productdata->price) }}</span>
-                    <span class="old-price price " style="font-size:14;"> Rs {{$productdata->price}} </span>
-                  </div>
-                  {{-- <p style="  border-radius:5px; font-size:15px; font-weight:bold; "> Price:<strike>Rs. {{$productdata->price}} MP</strike></p> --}}
-                  {{-- <p style="  border-radius:5px; font-size:15px; font-weight:bold; "> New Price:Rs. {{$productdata->price - ($productdata->discount * 0.01 *$productdata->price) }} </p> --}}
+  						<h2>{{$productdata[0]->title}} </h2>
+  						<h3> {{$productdata[0]->brand}}</h3>
+  						<div  style=" background-color:#dba8a8; border-radius:5px; margin-left:20px; margin:0px 20px 20px 20px ; padding: 20px" >
+                <div style="display:flex">
+
+  							<p style="  border-radius:5px; font-size:15px; font-weight:bold;"> Screen:{{$productdata[0]->Sizeinch}}"</p>
+                <p  style="margin-left:40%; border-radius:5px; font-size:15px; font-weight:bold;"> Stock:
+                  @if($productdata[0]->stock>0)
+                  {{$productdata[0]->stock}}
                 @else
-                  <p style="  border-radius:5px; font-size:15px; font-weight:bold; "> Price:Rs. {{$productdata->price}} MP</p>
+                  Out of Stock
+                @endif
+                </p>
+
+              </div>
+  							<p style="  border-radius:5px; font-size:15px; font-weight:bold;"> {{$productdata[0]->osname}}:{{$productdata[0]->osvalue}} ({{$productdata[0]->osdetail}})</p>
+  							<p style="  border-radius:5px; font-size:15px; font-weight:bold; "> RAM:{{$productdata[0]->RamSize}} GB</p>
+                @if ($productdata[0]->discount >0)
+                  <div>
+                    <strong><span class="bg-success" style="font-size:24px; ">Rs. {{$productdata[0]->price - ($productdata[0]->discount * 0.01 *$productdata[0]->price) }}</span></strong>
+                    <s><span class="bg-info" style="font-size:14px;"> Rs {{$productdata[0]->price}} </span></s>
+                  </div>
+                  {{-- <p style="  border-radius:5px; font-size:15px; font-weight:bold; "> Price:<strike>Rs. {{$productdata[0]->price}} MP</strike></p> --}}
+                  {{-- <p style="  border-radius:5px; font-size:15px; font-weight:bold; "> New Price:Rs. {{$productdata[0]->price - ($productdata[0]->discount * 0.01 *$productdata[0]->price) }} </p> --}}
+                @else
+                  <p style="  border-radius:5px; font-size:24px; ">Rs. {{$productdata[0]->price}}</p>
 
                 @endif
 
@@ -152,29 +191,163 @@
 
                        </ul></div>
 
-                       <div class="tab-content col-md-12" style="text-align:center;">
+                       <div class="tab-content col-md-16" style="text-align:center;width:150%">
                         <div class="tab-pane fade in active" id="spec" style="margin:10px">
+                          {{--
+                          ##############################
+                          This is specification section
+                          ##############################
+                          --}}
 
-                            <h2>Company And Model </h2>
+                            {{-- <h2>Company And Model </h2>
   						<h3> Specifications</h3>
   						<div  style=" background-color:#EEE; border-radius:5px; margin-left:20px; margin:0px 20px 20px 20px ; padding: 20px" >
   							<p style="  border-radius:5px; font-size:15px; font-weight:bold;"> Spec:Bla</p>
   							<p style="  border-radius:5px; font-size:15px; font-weight:bold;"> Spec:Bla</p>
   							<p style="  border-radius:5px; font-size:15px; font-weight:bold; "> Spec:Bla</p>
   							<p style="  border-radius:5px; font-size:15px; font-weight:bold; "> Spec:Bla</p>
-  							</div>
+  							</div> --}}
+                        <table class="table" align="left">
+
+                            <tr>
+                              <th>Model</th>
+                              <th>{{$productdata[0]->title}}</th>
+                            </tr>
+                            <tr>
+                              <th>Manufacturer</th>
+                              <th>{{$productdata[0]->brand}}</th>
+                            </tr>
+                            <tr>
+                              <th>OS</th>
+                              <th>{{$productdata[0]->osname}}</th>
+                            </tr>
+                            <tr>
+                              <th>OS Version</th>
+                              <th>{{$productdata[0]->osvalue}}({{$productdata[0]->osdetail}})</th>
+                            </tr>
+                            <tr>
+                              <th>Network</th>
+                              <th>{{$productdata[0]->Network}}</th>
+                            </tr>
+                            <tr>
+                              <th>Dimension</th>
+                              <th>{{$productdata[0]->Dimensions}}</th>
+                            </tr>
+                            <tr>
+                              <th>Screen</th>
+                              <th>{{$productdata[0]->Sizeinch}}"</th>
+                            </tr>
+                            <tr>
+                              <th>Resolution</th>
+                              <th>{{$productdata[0]->Resolution}}</th>
+                            </tr>
+                            <tr>
+                              <th>SIM</th>
+                              <th>{{$productdata[0]->SIM}}</th>
+                            </tr>
+                            <tr>
+                              <th>Weight</th>
+                              <th>{{$productdata[0]->Weight}}</th>
+                            </tr>
+                            <tr>
+                              <th>CPU</th>
+                              <th>{{$productdata[0]->CPU}}</th>
+                            </tr>
+                            <tr>
+                              <th>GPU</th>
+                              <th>{{$productdata[0]->GPU}}</th>
+                            </tr>
+                            <tr>
+                              <th>Internal Memory</th>
+                              <th>{{$productdata[0]->InternalSize}} GB</th>
+                            </tr>
+                            <tr>
+                              <th>Externam Memory</th>
+                              <th>{{$productdata[0]->External}}</th>
+                            </tr>
+                            <tr>
+                              <th>RAM</th>
+                              <th>{{$productdata[0]->RamSize}} GB</th>
+                            </tr>
+                            <tr>
+                              <th>Primary Camera</th>
+                              <th>{{$productdata[0]->PrimaryMP}} MP</th>
+                            </tr>
+                            <tr>
+                              <th>Secondary Camera</th>
+                              <th>{{$productdata[0]->Secondary}}</th>
+                            </tr>
+                            <tr>
+                              <th>Features</th>
+                              <th>{{$productdata[0]->Features}}</th>
+                            </tr>
+
+                            <tr>
+                              <th>WLAN</th>
+                              <th>{{$productdata[0]->WLAN}}</th>
+                            </tr>
+                            <tr>
+                              <th>Bluetooth</th>
+                              <th>{{$productdata[0]->Bluetooth}}</th>
+                            </tr>
+                            <tr>
+                              <th>GPS</th>
+                              <th>{{$productdata[0]->GPS}}</th>
+                            </tr>
+                            <tr>
+                              <th>Radio</th>
+                              <th>{{$productdata[0]->Radio}}</th>
+                            </tr>
+                            <tr>
+                              <th>USB</th>
+                              <th>{{$productdata[0]->USB}}</th>
+                            </tr>
+                            <tr>
+                              <th>Sensors</th>
+                              <th>{{$productdata[0]->Sensors}}</th>
+                            </tr>
+                            <tr>
+                              <th>Battery</th>
+                              <th>{{$productdata[0]->battery}} mAh</th>
+                            </tr>
+
+                            <tr>
+                              <th>Views</th>
+                              <th>{{$productdata[0]->popularity}}</th>
+                            </tr>
+                        </table>
 
 
 
                         </div>
                         <div class="tab-pane fade" id="rev" style="margin:10px">
-
+{{--
                             <h3 class="head text-center">blup</h3>
                             <p class="narrow text-center">
                                 Lorem ipsum dolor sit amet, his ea mollis fabellas principes. Quo mazim facilis tincidunt ut, utinam saperet facilisi an vim.
-                            </p>
+                            </p> --}}
+                            {{--
+                            #######################
+                            This is review section
+                            #######################
+                            --}}
+                            <div class="container" style="width:inherit">
+                              <div class="row">
+                                @foreach ($reviews as $review)
 
 
+                                <div class=" col-md-5 block-text rel zmin" style="margin:5px; background-color:#dba8a8; border-radius:5px; margin-left:20px; margin:0px 20px 20px 20px ; padding: 20px">
+                                        <p title="" class="font-awesome text-primary" >{{$review->username}}</p>
+                                               <div class="mark text-warning">rating:{{$review->rating}}
+
+                                              </div>
+                                                 <p>{{$review->reviewtext}}</p>
+
+                                </div>
+                              @endforeach
+
+                              </div>
+                            </div>
 
                         </div>
 

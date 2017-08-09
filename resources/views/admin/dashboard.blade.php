@@ -573,7 +573,7 @@ $(document).on('submit','.productadder',function(e){
       console.log(err);
     },
   }).done(function(data){
-
+    console.log(data);
     $(".dashcontainer").empty().html(data);
     $('.notificationtext').fadeIn(1000);
     $('.notificationtext').fadeOut(2000);

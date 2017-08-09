@@ -235,11 +235,49 @@ public function addProduct(Request $request){
   //   'productbrand'=>'required',
   // ]);
 
+//  $request->file('productfile')->move(public_path("/uploads"), 'prasid');
 
-  if($file=$request->file('productfile')){
-    $name=$file->getClientOriginalName();
-    $file->move('images',$name);
-  }
+    $pname=Input::get('productmodel');
+    $pprice=Input::get('productprice');
+    $pdiscount=Input::get('productdiscount');
+    $pstock=Input::get('productstock');
+    $pbrand=Input::get('productbrand');
+    $pram=Input::get('productram');
+    $pandroidversion=Input::get('osselect');
+    $pinternal=Input::get('productinternalmemory');
+    $pprimarycamera=Input::get('productprimarycamera');
+    $pexternal=Input::get('productexternalmemory');
+    $psecondarycamera=Input::get('productsecondarycamera');
+    $pweight=Input::get('productweight');
+    $pscreen=Input::get('productscreen');
+    $pmultitouch=Input::get('productmultitouch');
+    $pcpu=Input::get('productcpu');
+    $pgpu=Input::get('productgpu');
+
+    $adddata=App\Product::insertGetId(array(
+
+                                            //'customerid'=>4,
+                                            'title'=>$pname,
+                                            'price'=>$pprice,
+                                            'discount'=>$pdiscount,
+                                            'stock'=>$pstock,
+                                            'brand'=>$pbrand,
+                                            'RamSize'=>$pram,
+                                            'osid'=>$pandroidversion,
+                                            'InternalSize'=>$pinternal,
+                                            'PrimaryMP'=>$pprimarycamera,
+                                            'Multitouch'=>$pmultitouch,
+                                            'Sizeinch'=>$pscreen,
+                                            'Weight'=>$pweight,
+                                            'SecondaryMP'=>$psecondarycamera,
+                                            'External'=>$pexternal,
+                                            'CPU'=>$pcpu,
+                                            'GPU'=>$pgpu,
+
+
+
+    ));
+
 
 
 

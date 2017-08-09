@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
 use App;
+use DB;
 class ProductController extends Controller{
 
 public function listproducts(){
@@ -181,18 +182,23 @@ public function filteredProduct(){
 
 public function detailproducts($productid){
 
-  $productdata=App\Product::where('productid', $productid)->first();
-  if($productdata->popularity <10000){
-    $productda=App\Product::where('productid',$productid)->update(['popularity'=>$productdata->popularity+1]);
+  $productdata=DB::select('SELECT p.*,o.* FROM product2 AS p,osnames as o WHERE p.osid=o.osid and p.productid='.$productid);//where('productid', $productid)->first();
+  $reviews=App\Review::where('productid',$productid)->get();
+  //return $reviews;
+
+  //return $productdata[0]->popularity;
+  //$productdata1=App\Product::select('SELECT * FROM product2 AS p,osnames as o WHERE p.osid=o.osid and p.productid='+$productid);//where('productid', $productid)->first();
+  if($productdata[0]->popularity <10000){
+    $productda=App\Product::where('productid',$productid)->update(['popularity'=>$productdata[0]->popularity+1]);
 
   }
-  if($productdata->price >=0){
+  if($productdata[0]->price >=0){
     $suggestedproducts=App\Product::where([
                                           ['productid','<>',$productid],
-                                          ['price','<',$productdata->price * 1.5],
-                                          ['price','>',$productdata->price * 0.6],
-                                          ['popularity','>',$productdata->popularity*0.5],
-                                          ['popularity','<',$productdata->popularity*1.5],
+                                          ['price','<',$productdata[0]->price * 1.5],
+                                          ['price','>',$productdata[0]->price * 0.6],
+                                          ['popularity','>',$productdata[0]->popularity*0.5],
+                                          ['popularity','<',$productdata[0]->popularity*1.5],
 
 
                                           ]  )->orderBy('popularity','desc')->limit(5)->get();
@@ -201,7 +207,7 @@ public function detailproducts($productid){
  //return $productdata;
  //return $suggestedproducts;
 //  return "hellp" + $productid;
-return view("productdetail")->with(compact("productdata"))->with(compact('suggestedproducts'));
+return view("productdetail")->with(compact("productdata"))->with(compact('reviews'))->with(compact('suggestedproducts'));
 }
 
 public function showproductslist(Response $response){

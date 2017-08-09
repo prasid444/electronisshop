@@ -19,9 +19,16 @@
 </div>
 
 <div class="col-md-10">
-  <h2 class="text-primary">Bookings Details</h2>
-  <canvas id="bookingcanvas "></canvas>
+  <h2 class="text-primary">Purchase Details Weekly</h2>
+  <canvas id="bookingweeklycanvas" width="300px" height="300px"></canvas>
 </div>
+
+<div class="col-md-10">
+  <h2 class="text-primary">Purchase Details Monthly</h2>
+  <canvas id="bookingmonthlycanvas " width="300px" height="300px"></canvas>
+</div>
+
+
 </div>
 </div>
 </div>
@@ -80,5 +87,18 @@ var osdata=osinfos.map(function(a) {return a.total;});
       }]
     }
   });
+
+  var ctx2 = document.getElementById("bookingweeklycanvas").getContext('2d');
+  var myChart2 = new Chart(ctx2, {
+  type: 'line',
+  data: {
+    labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+    datasets: [{
+      label: 'apples',
+      data: [12, 19, 3, 17, 6, 3, 7],
+      backgroundColor: "rgba(153,255,51,0.4)"
+    }]
+}});
+
 
 </script>

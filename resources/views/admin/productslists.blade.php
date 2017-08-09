@@ -87,7 +87,8 @@
       <td>{{$productdata->discount}}    </td>
       <td>{{$productdata->stock}}</td>
       <td>
-      <button class="producteditbutton" onclick="editproduct('{{$productdata}} ',4)">Edit</button>
+      <button class="producteditbutton btn btn-primary" onclick="editproduct('{{$productdata}} ',4)">Edit</button>
+      <a href="/products/{{$productdata->productid}}"><button class="btn btn-success" >View</button></a>
       </td>
       </tr>
     @else
@@ -102,7 +103,8 @@
       <td>{{$productdata->discount}}    </td>
       <td>{{$productdata->stock}}</td>
       <td>
-      <button class="producteditbutton"  onclick="editproduct('{{$productdata}} ',4)">Edit</button>
+      <button class="producteditbutton btn btn-primary"  onclick="editproduct('{{$productdata}} ',4)">Edit</button>
+      <a href="/products/{{$productdata->productid}}"><button class="btn btn-success" >View</button></a>
       </td>
       </tr>
     @endif
