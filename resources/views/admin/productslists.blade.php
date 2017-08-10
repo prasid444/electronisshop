@@ -1,19 +1,13 @@
 
-{{--  Lists out the repair tickets--}}
-{{-- <<ul class="list-group">
-@foreach ($variable as $key => $value)
-  <li>
+<div class="panel panel-default">
 
-  </li>
-  <input type="button" value="edit" />
-@endforeach
-</ul> --}}
-<div class="editdatacontent" style=>
-  <div  >
+  <div class="panel-body">
+<div class="editdatacontent" >
+
     @component('admin.productedit',['osdatas'=>$osdatas])
 
     @endcomponent
-  </div>
+
 
 
 
@@ -34,25 +28,7 @@
   </p>
 </div>
 {{-- To check form errors --}}
-@if (count($errors) > 0)
 
-<div class="alert alert-danger">
-
-  <strong>Whoops!</strong> There were some problems with your input.<br><br>
-
-  <ul>
-
-    @foreach ($errors->all() as $error)
-
-      <li>{{ $error }}</li>
-
-    @endforeach
-
-  </ul>
-
-</div>
-
-@endif
 <table>
   <tr>
     <th colspan="7">
@@ -114,3 +90,11 @@
 
 
 </table>
+</div>
+</div>
+<style>
+
+body {
+    background-color:#cacaca;
+}
+</style>

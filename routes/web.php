@@ -20,6 +20,7 @@ Route::get('/', function () {
 // Route::get('result',function(){
 //   return "hello";
 // });
+Route::any('user/section/dash/','HomeController@changetabuser');
 Route::get('result/', 'TicketViewController@showstatus');
 Route::get('products','ProductController@listproducts');
 
@@ -37,7 +38,7 @@ Route::get('products/{productid}','ProductController@detailproducts');
 // Route::get('/admin/login','AdminLoginController@showLoginForm')->name('admin.login');
 // Route::post('/admin/login','AdminLoginController@login')->name('admin.login.submit');
 // Route::get('/admin','AdminController@index')->name('admin.dashboard');
-Route::get('users/logout','Auth\LoginController@logoutuser')->name('user.logout');
+Route::any('/users/logout','Auth\LoginController@logoutuser')->name('user.logout');
 
 Route::prefix('admin')->group(function(){
   Route::get('/section/dash/','AdminController@changetab')->name('admin.change.section');

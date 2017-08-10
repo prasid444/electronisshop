@@ -1,4 +1,8 @@
+
 {{-- <div id="myrepairdata" data="{{$repairstatus}}"> --}}
+<div class="panel panel-default">
+
+  <div class="panel-body">
 <div class="container">
   <div class="row">
 
@@ -32,6 +36,14 @@
 </div>
 </div>
 </div>
+</div>
+
+<style>
+body {
+    background-color:#cacaca;
+}
+
+</style>
 {{-- </div> --}}
 
 <script>

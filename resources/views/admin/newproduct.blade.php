@@ -3,7 +3,7 @@
     {{-- <span class="myclose">&times;</span> --}}
 
 
-<form files="true" enctype="multipart/form-data" class="productadder"   name="newproductform"  method="post">
+<form enctype="multipart/form-data" class="productadder"   name="newproductform"  method="post">
   {{ csrf_field() }}
 
   {{-- <h3 align="center" class="label-primary">Add Product</h3> --}}
@@ -19,13 +19,13 @@
 
 <div class="input-group">
   <span class="input-group-addon">Model</span>
-  <input required type="text" name="productmodel" class="form-control" placeholder="model">
+  <input  type="text" name="productmodel" class="form-control" placeholder="model">
 </div>
 
 
   <div class="input-group">
     <span class="input-group-addon">Brand</span>
-    <input required type="text" name="productbrand" class="form-control" placeholder="brand">
+    <input  type="text" name="productbrand" class="form-control" placeholder="brand">
 
 
   </div>
@@ -40,17 +40,17 @@
 </div>
   <div class="input-group">
     <span class="input-group-addon">Internal Memory</span>
-    <input required type="number" name="productinternalmemory" class="form-control" placeholder="in GB">
+    <input  type="number" name="productinternalmemory" class="form-control" placeholder="in GB">
 
   </div>
   <div class="input-group">
     <span class="input-group-addon">RAM</span>
-    <input required type="number" name="productram" class="form-control" placeholder="in GB">
+    <input  type="number" name="productram" class="form-control" placeholder="in GB">
 
   </div>
   <div class="input-group">
     <span class="input-group-addon">Price</span>
-    <input required type="number" name="producprice" class="form-control" placeholder="Price(RS)">
+    <input  type="number" name="producprice" class="form-control" placeholder="Price(RS)">
 
   </div>
   <div class="input-group">
@@ -60,7 +60,7 @@
   </div>
   <div class="input-group">
     <span class="input-group-addon">Primary Camera</span>
-    <input required type="number" name="productprimarycamera" class="form-control" placeholder="Back Camera detail">
+    <input  type="number" name="productprimarycamera" class="form-control" placeholder="Back Camera detail">
   </div>
   <div class="input-group">
     <span class="input-group-addon">Weight</span>
@@ -70,7 +70,7 @@
   </div>
   <div class="input-group">
     <span class="input-group-addon">Screen Size</span>
-    <input required type="float" name="productscreen" class="form-control" placeholder="In inches">
+    <input  type="float" name="productscreen" class="form-control" placeholder="In inches">
 
 
   </div>
@@ -80,7 +80,7 @@
 <div class="rightside form-group col-xs-6">
 <div class="input-group">
   <span class="input-group-addon">Secondary Camera</span>
-  <input required type="text" name="productsecondarycamera" class="form-control" placeholder="Front Camera detail">
+  <input  type="text" name="productsecondarycamera" class="form-control" placeholder="Front Camera detail">
 
 
 </div>
@@ -96,13 +96,13 @@
 </div>
 <div class="input-group">
   <span class="input-group-addon">CPU</span>
-  <input required type="text" name="productcpu" class="form-control" placeholder="CPU detail">
+  <input  type="text" name="productcpu" class="form-control" placeholder="CPU detail">
 
 
 </div>
 <div class="input-group">
   <span class="input-group-addon">GPU</span>
-  <input required type="text" name="productgpu" class="form-control" placeholder="GPU detail">
+  <input  type="text" name="productgpu" class="form-control" placeholder="GPU detail">
 
 
 </div>
@@ -128,8 +128,7 @@
 </div>
 
 </form>
-</div>
-</div>
+
 <style>
 
 

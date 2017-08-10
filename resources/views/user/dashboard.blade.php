@@ -67,7 +67,7 @@
                                           Logout
                                       </a>
 
-                                      <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                                      <form id="logout-form" action="users/logout" method="POST" style="display: none;">
                                           {{ csrf_field() }}
                                       </form>
                                   </li>
@@ -112,9 +112,14 @@
 
 
                <div class="tab-content col-md-12 dashboardcontent" style="text-align:center;">
+                 <div class="aboutuser">
+                     <h1>This is about user</h1>
+
+                 </div>
                  <div class="dashcontainer" style="position:relative">
 
                  </div>
+
                {{-- <div class="tab-pane fade in active" id="sum" style="margin:10px">
 
                   @component('admin.shopdetails')
@@ -163,6 +168,7 @@
 
   <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}"></script>
+  <script src="/js/bootstrap.js" type="text/javascript"></script>
 
 <script src="/js/jquery-3.2.1.js" type="text/javascript"></script>
 
@@ -170,35 +176,7 @@
 
 
 
-// $(document).on('click','#shp',function(e){
-//   e.preventDefault();
-//   console.log("shop clicked");
-// });
 
-
-//main function to react with tab number and also manage the page
-
-// function getProducts(tabnumber){
-//
-//
-//
-//   $.ajax({
-//     asyns:true,
-//
-//     url:'/admin/dash/?tab='+tabnumber
-//   }).done(function (data){
-//     $('.dashboardcontent').html(data);
-//     //location.hash='filter';
-//     //history.replaceState();
-//     //;azyload
-//   //  $("img.lazy").lazyload();
-//     location.hash=tabnumber;
-//     console.log("done");
-// //        console.log(data);
-//
-//   });
-//
-// }
 
 
 $(document).ready(function(){
@@ -207,8 +185,14 @@ $(document).ready(function(){
         var tabvalue=$(this).attr('href');
         console.log(tabvalue);
 
-
-    changeTab(tabvalue);
+        if(tabvalue=='inf'){
+          $('.dashcontainer').empty();
+          $(".aboutuser").show();
+        }
+        else {
+            $(".aboutuser").hide();
+            changeTab(tabvalue);
+        }
     });
 });
 
@@ -218,27 +202,23 @@ function changeTab(tabvalue){
 
   $.ajax({
       asyns:true,
-      url:'/admin/section/dash/?tab='+tabvalue,
-      headers: { 'X-CSRF-Token' : $('meta[name=carf-token]').attr('content') },
-      //dataType:'html',
+      //type:'POST',
+      url:'/user/section/dash/',
+      data:{tab:tabvalue},
+      headers: { 'X-CSRF-Token' : $('meta[name=csrf-token]').attr('content') },
+    //  dataType:'text',
+    //dataType:'json',
+  error:function(d){
+    console.error(d);
+  },
 
-    //  data:{tab: tabvalue},
 
-    //  url:'/products/filter/?page='+1+'&model=all'+'&minprice=0&maxprice=100000&minram=1&minbackcam=0&sort=0'
-
-
-    //  data: {tab: tabvalue,_token:  '{{ csrf_token() }}' } ,
-// success: function(data){
-//       $(".dashcontainer").empty().html(data);
-//       console.log("hey i got the data");
-// }
-// });
 
   }).done(function (data){
 
          $(".dashcontainer").empty().html(data);
         // console.log(data);
-         console.log("hey i got the data to change tab value");
+         console.log("hey i got the data to change tab value USER");
      });
 
     //  error: function(err){
@@ -247,242 +227,6 @@ function changeTab(tabvalue){
 
  }
 
-//  $.post('{{route('admin.change.section')}}', data:{ _token: '{{ csrf_token() }}', data: tabvalue }, function(response) {
-//     console.log(response);
-// });
-
-
-
-// $(document).ready(function() {
-//     $(".nav li a").click(function() {
-//
-//       $(".dashboardcontent").empty().append("<div id='loading'><img src='loading.gif' alt='Loading' /></div>");
-//         $(".nav li").removeClass('active');
-//         $(".nav li a").removeClass('current');
-//         $(this).addClass('current');
-//         $(this < 'a').addClass('active');
-//         //console.log($(this).attr('href'));
-//         var tabvalue=$(this).attr('href');
-//         console.log(tabvalue);
-//         $.ajax({
-//           asyns:true,
-//           url: 'admin/dash/?tabvalue='+tabvalue,
-//
-//           success: function(html) {
-//             $(".dashboardcontent").html(html);
-//             console.log("got it");
-//             }
-// 	});
-// 	return false;
-//     });
-//
-//     $(".dashboardcontent").empty().append("<div id='loading'><img src='images/loading.gif' alt='Loading' /></div>");
-// 	$.ajax({ asyns:true,
-//            url: '/admin/dash/?tabvalue=sum',
-//            success: function(html) {
-//             $(".dashboardcontent").html(html);
-// 	}
-//     });
-// });
-//
-function addproduct(tab){
-  console.log('you are in add product');
-  switch (tab) {
-    case 1:
-
-      break;
-      case 2:
-
-        break;
-        case 3:
-          $('.repairticketadder').trigger('reset');
-
-          break;
-          case 4:
-
-            break;
-    default:
-    break;
-  }
-  $('.adddatacontent').show();
-}
-
-function editproduct(data,tab){
-
-  //alert(data);
-  console.log("clicked tab is:" + tab);
-  data=JSON.parse(data);
-
-switch (tab) {
-  case 1:
-      break;
-  case 2:
-      break;
-      case 3:
-          $('.repairticketeditor').trigger('reset');
-          $('input[name="repairid"]').val(data.repairid);
-          $('input[name="rstatus"]').val(data.repairStatus);
-          $('input[name="rexpectedprice"]').val(data.expectedCost);
-          $('input[name="rmodel"]').val(data.repairModel);
-          $('input[name="rbrand"]').val(data.repairBrand);
-          $('input[name="rImei"]').val(data.repairImei);
-          $('input[name="rpassword"]').val(data.repairPassword);
-        break;
-        case 4:
-          $('.producteditor').trigger('reset');
-          //var $form=$('.producteditor');
-          //$form.
-          //console.log(data.title);
-          $('input[name="productid"]').val(data.productid);
-          $('input[name="pname"]').val(data.title);
-          $('input[name="pprice"]').val(data.price);
-          $('input[name="pdiscount"]').val(data.discount);
-          $('input[name="pstock"]').val(data.stock);
-          $('input[name="pbrand"]').val(data.brand);
-          $('input[name="pram"]').val(data.RamSize);
-          $('input[name="pandroidversion"]').val(data.Osvalue);
-          $('input[name="pinternal"]').val(data.InternalSize);
-          $('input[name="pprimarycamera"]').val(data.PrimaryMP);
-        break;
-  default:
-  break;
-
-}
-
-  $('.editdatacontent').show();
-
-
-
-
-
-
-}
-function hideproduct(){
-  console.log("hidden successfulyy");
-    $('.editdatacontent').hide();
-
-    $('.adddatacontent').hide();
-
-}
-
-$(document).on('submit','.producteditor',function(e){
-  e.preventDefault();
-  var pid=$('input[name="productid"]').val();
-  var pname=$('input[name="pname"]').val();
-  var pprice=$('input[name="pprice"]').val();
-  var pdiscount=$('input[name="pdiscount"]').val();
-  var pstock=$('input[name="pstock"]').val();
-  var pbrand=$('input[name="pbrand"]').val();
-  var pram=$('input[name="pram"]').val();
-  var pandroidversion=$('input[name="pandroidversion"]').val();
-  var pinternal=$('input[name="pinternal"]').val();
-  var pprimarycamera=$('input[name="pprimarycamera"]').val();
-
-  $.ajax({
-    asyns:true,
-    type:'get',
-    url:'/admin/updateproduct/',
-    data:{pid:pid,pname:pname,pprice:pprice,pdiscount:pdiscount,pstock:pstock,pbrand:pbrand,pram:pram,pandroidversion:pandroidversion,pinternal:pinternal,pprimarycamera:pprimarycamera},
-
-    headers: { 'X-CSRF-Token' : $('meta[name=carf-token]').attr('content') },
-
-
-  }).done(function(data){
-    console.log('i am done in updating the products ');
-    $('.notificationtext').show();
-    $('.editdatacontent').fadeOut(2000);
-    $('.notificationtext').fadeOut(1000);
-     $(".dashcontainer").delay(3000).empty().html(data);
-
-
-  }) ;
-
-  //console.log("got: " + pname + ' and ' + pprice + ' and '+pdiscount );
-  //$(this).trigger('reset');
-
-});
-
-$(document).on('submit','.repairticketeditor',function(e){
-  e.preventDefault();
-  var rid=$('input[name="repairid"]').val();
-  var rstatus=$('input[name="rstatus"]').val();
-  var rexpectedprice=$('input[name="rexpectedprice"]').val();
-  var rmodel=$('input[name="rmodel"]').val();
-  var rbrand=$('input[name="rbrand"]').val();
-  var rImei=$('input[name="rImei"]').val();
-  var rpassword=$('input[name="rpassword"]').val();
-
-
-
-  $.ajax({
-    asyns:true,
-    type:'get',
-    url:'/admin/updaterepairticket/',
-    data:{rid:rid,rstatus:rstatus,rexpectedprice:rexpectedprice,rmodel:rmodel,rbrand:rbrand,rImei:rImei,rpassword:rpassword},
-
-    headers: { 'X-CSRF-Token' : $('meta[name=carf-token]').attr('content') },
-
-    // success:function(data){
-    //   console.log('got it');
-    // },
-    // error:function(da){
-    //   console.error('opppss');
-    //   console.log(da);
-    // }
-  }).done(function(data){
-    console.log('i am done in updating the repairtickts ');
-    $('.notificationtext').show();
-    $('.editdatacontent').fadeOut(2000);
-    $('.notificationtext').fadeOut(1000);
-     $(".dashcontainer").empty().html(data);
-
-
-  });
-//console.log('i am here');
-
-});
-
-
-$(document).on('submit','.repairticketadder',function(e){
-    e.preventDefault();
-    //var rid=$('input[name="repairid"]').val();
-    //var rstatus=$('input[name="rstatus"]').val();
-    var cid=$('.repairticketadder input[name="customerid"]').val();
-    var rexpectedprice=$('.repairticketadder input[name="expectedCost"]').val();
-    var rmodel=$('.repairticketadder input[name="repairmodel"]').val();
-    var rissue=$('.repairticketadder input[name="repairIssue"]').val();
-    var rcolor=$('.repairticketadder input[name="repairColor"]').val();
-    var rImei=$('.repairticketadder input[name="repairImei"]').val();
-    var rpassword=$('.repairticketadder input[name="repairPassword"]').val();
-
-
-
-
-    $.ajax({
-      asyns:true,
-      type:'get',
-      url:'/admin/addrepairticket/',
-      data:{cid:cid,rcolor:rcolor,rexpectedprice:rexpectedprice,rmodel:rmodel,rissue:rissue,rImei:rImei,rpassword:rpassword},
-
-      headers: { 'X-CSRF-Token' : $('meta[name=carf-token]').attr('content') },
-
-      // success:function(data){
-      //   console.log('got it');
-      // },
-      // error:function(da){
-      //   console.error('opppss');
-      //   console.log(da);
-      // }
-    }).done(function(data){
-      console.log('i am done in adding the repairtickts ');
-      $('.notificationtext').show();
-      $('.editdatacontent').fadeOut(2000);
-      $('.notificationtext').fadeOut(1000);
-       $(".dashcontainer").empty().html(data);
-
-
-    });
-});
 
 function togglehideshow(idname){
   var x = document.getElementById(idname);

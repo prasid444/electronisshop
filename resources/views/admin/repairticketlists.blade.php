@@ -8,6 +8,9 @@
   <input type="button" value="edit" />
 @endforeach
 </ul> --}}
+<div class="panel panel-default">
+
+  <div class="panel-body">
 <div class="editdatacontent" >
   @component('admin.repairticketedit')
 
@@ -82,8 +85,13 @@
   @endforeach
 
 </table>
+</div>
+</div>
 
 <style>
 /*label { display: table-cell; }
 input { display: table-cell; }*/
+body {
+    background-color:#cacaca;
+}
 </style>
