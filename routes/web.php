@@ -23,6 +23,10 @@ Route::get('/', function () {
 Route::any('user/section/dash/','HomeController@changetabuser');
 Route::get('result/', 'TicketViewController@showstatus');
 Route::get('products','ProductController@listproducts');
+Route::get('contacts',function(){
+  return view('user.contactabove');
+}
+);
 
 //not used
 Route::get('products/changes/','ProductController@filteredProduct');

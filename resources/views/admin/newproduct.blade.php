@@ -50,12 +50,12 @@
   </div>
   <div class="input-group">
     <span class="input-group-addon">Price</span>
-    <input  type="number" name="producprice" class="form-control" placeholder="Price(RS)">
+    <input  type="number" name="productprice" class="form-control" placeholder="Price(RS)">
 
   </div>
   <div class="input-group">
     <span class="input-group-addon">Discount</span>
-    <input type="number" name="producdiscount" min="0" max="100"class="form-control" placeholder="Price(RS)">
+    <input type="number" name="productdiscount" min="0" max="100"class="form-control" placeholder="Price(RS)">
 
   </div>
   <div class="input-group">

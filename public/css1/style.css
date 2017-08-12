@@ -248,7 +248,10 @@ i.pin{
 	color:#919295;
 }
 .social {
-	float: right;
+	/*float: right;*/
+	position: absolute;
+	left: 92%;
+
 }
 
 .social2 {
@@ -655,22 +658,3 @@ i.admin {
 }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

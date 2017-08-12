@@ -235,7 +235,7 @@ public function addProduct(Request $request){
   //   'productbrand'=>'required',
   // ]);
 
-//  $request->file('productfile')->move(public_path("/uploads"), 'prasid');
+    //$request->file('productfile')->move(public_path("/uploads"), 'prasid');
 
     $pname=Input::get('productmodel');
     $pprice=Input::get('productprice');
@@ -254,29 +254,29 @@ public function addProduct(Request $request){
     $pcpu=Input::get('productcpu');
     $pgpu=Input::get('productgpu');
 
-    $adddata=App\Product::insertGetId(array(
-
-                                            //'customerid'=>4,
-                                            'title'=>$pname,
-                                            'price'=>$pprice,
-                                            'discount'=>$pdiscount,
-                                            'stock'=>$pstock,
-                                            'brand'=>$pbrand,
-                                            'RamSize'=>$pram,
-                                            'osid'=>$pandroidversion,
-                                            'InternalSize'=>$pinternal,
-                                            'PrimaryMP'=>$pprimarycamera,
-                                            'Multitouch'=>$pmultitouch,
-                                            'Sizeinch'=>$pscreen,
-                                            'Weight'=>$pweight,
-                                            'SecondaryMP'=>$psecondarycamera,
-                                            'External'=>$pexternal,
-                                            'CPU'=>$pcpu,
-                                            'GPU'=>$pgpu,
-
-
-
-    ));
+    // $adddata=App\Product::insertGetId(array(
+    //
+    //                                         //'customerid'=>4,
+    //                                         'title'=>$pname,
+    //                                         'price'=>$pprice,
+    //                                         'discount'=>$pdiscount,
+    //                                         'stock'=>$pstock,
+    //                                         'brand'=>$pbrand,
+    //                                         'RamSize'=>$pram,
+    //                                         'osid'=>$pandroidversion,
+    //                                         'InternalSize'=>$pinternal,
+    //                                         'PrimaryMP'=>$pprimarycamera,
+    //                                         'Multitouch'=>$pmultitouch,
+    //                                         'Sizeinch'=>$pscreen,
+    //                                         'Weight'=>$pweight,
+    //                                         'SecondaryMP'=>$psecondarycamera,
+    //                                         'External'=>$pexternal,
+    //                                         'CPU'=>$pcpu,
+    //                                         'GPU'=>$pgpu
+    //
+    //
+    //
+    // ));
 
 
 

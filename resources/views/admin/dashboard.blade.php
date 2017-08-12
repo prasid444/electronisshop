@@ -483,7 +483,7 @@ $(document).on('submit','.producteditor',function(e){
 
   $.ajax({
     asyns:true,
-    type:'get',
+    type:'POST',
     url:'/admin/updateproduct/',
     data:{pid:pid,pname:pname,pprice:pprice,pdiscount:pdiscount,pstock:pstock,pbrand:pbrand,pram:pram,pandroidversion:pandroidversion,pinternal:pinternal,pprimarycamera:pprimarycamera},
 
@@ -567,7 +567,7 @@ $(document).on('submit','.productadder',function(e){
   $.ajax({
     asyns:true,
     url:'/admin/addproduct/?'+formParams+'&productfile='+$('#productfile').val(),
-    headers: { 'X-CSRF-Token' : $('meta[name=carf-token]').attr('content') },
+    headers: { 'X-CSRF-Token' : $('meta[name=casf-token]').attr('content') },
 
     error:function(err){
       console.log(err);

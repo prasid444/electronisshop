@@ -53,6 +53,13 @@
 <!--[if lt IE 7]>
     <p class="browsehappy">We are Extreamly sorry, But the browser you are using is probably from when civilization started. Which is way behind to view this site properly. Please update to a modern browser, At least a real browser. </p>
     <![endif]-->
+
+
+      @component('headings')
+
+      @endcomponent
+
+
     <div class="cblzbody-wrapper">
     <header>
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -119,6 +126,7 @@
                             <p class="lz-copy text-center">Copyright 2017 © <a href="bla.com"> <strong>Sere</strong></a>.<p>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -127,14 +135,15 @@
     </div><!-- lzbbones-body end here -->
 
     <!--  ####### site script content here ######## -->
-
+  </body>
+  </html>
     <script type="text/javascript" src="js/vendor/jquery-1.11.1.min.js"></script>
     <!-- load if our contact form or email subscribe options is used -->
 
     <!-- load bootstrap js -->
-    <script src="/js/jquery-3.2.1.js" type="text/javascript"></script>
+    <script src="/js/bootstrap.js" type="text/javascript"></script>
 
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script src="/js/jquery-3.2.1.js" type="text/javascript"></script>
 
 <script>
 // $(document).ready(function(){
@@ -206,9 +215,3 @@ function getResult(ticketNo){
 }
 
 </script>
-
-
-
-
-</body>
-</html>

@@ -2,281 +2,212 @@
 
 <head>
 
-  <!-- Bootstrap Core CSS -->
-  {{-- <link href="css1/bootstrap.css" rel="stylesheet"> --}}
-  {{-- <link rel="stylesheet" href="css1/bootstrap-r  esponsive.css"> --}}
-
-  <!-- Custom Css -->
 
 
-  {{-- <link rel="stylesheet" href="{{ asset('css1/custom-styles.css')}}"> --}}
-  {{-- <link rel="stylesheet" href="{{ asset('css/animate.css')}}" media="all"  /> --}}
-  {{-- <link href="{{ asset('css1/main.css')}}" rel="stylesheet"> --}}
-  {{-- <link href="{{ asset('css1/style.css')}}" rel="stylesheet" type="text/css" media="all" /> --}}
-  {{-- <link href="{{ asset('css1/theme.css')}}" rel="stylesheet"> --}}
-  {{-- <link rel="stylesheet" href="{{ asset('css2/main.css')}}"> --}}
-  {{-- <link href="{{ asset('css2/custom.css')}}" rel="stylesheet"> --}}
-  {{-- <link href="{{ asset('css1/styled.css')}}" rel="stylesheet"> --}}
-  {{-- <link rel="stylesheet" href="{{ asset('css1/custom-styles.css')}}"> --}}
-      <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}" media="all" />
-        {{-- <link rel="stylesheet" href="{{ asset('css2/bootstrap.css')}}" media="all" /> --}}
-      {{-- <link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css')}}" media="all" /> --}}
-        {{-- <link href="{{ asset('css/theme2.css')}}" rel="stylesheet"> --}}
-         {{-- <link href="{{ asset('css2/style.css')}}" rel="stylesheet"> --}}
-      {{-- <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css')}}" media="all" />  ' --}}
-
-        {{-- <link rel="stylesheet" href="{{ asset('css/social.css')}}"> --}}
-       {{-- <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css"> --}}
-         {{-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script> --}}
-         {{-- <script src="{{asset('js/jquery.min.js')}}" type="text/javascript"></script> --}}
 
 
-{{-- <script src="js/jquery-unveil.min.js" type="text/javascript"></script> --}}
-
-  <!-- Custom Fonts -->
-  {{-- <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"> --}}
-         <link rel="stylesheet" href="{{ asset('css/style.css')}}" media="all" />
-         <link rel="stylesheet" href="{{ asset('css1/theme.css')}}" media="all" />
-         <link rel="stylesheet" href="{{ asset('css1/main.css')}}" media="all" />
-
-      <link rel="stylesheet" id="lz-switcher-style" href="{{ asset('css/switcher-default.css')}}" media="all" />
 
 
-      {{-- <script src="{{ asset('js/vendor/modernizr-2.6.2.min.js')}}"></script> --}}
-      {{-- <script type="text/javascript" src="https://raw.githubusercontent.com/ressio/lazy-load-xt/master/dist/jqlight.lazyloadxt.min.js"></script> --}}
 
-<style type="text/css">
-
-
-  #tree-container label.hover{
-      color: red;
-  }
-
-
-</style>
-<script>
-
-</script>
 <meta charset="utf-8" />
 <title>Products</title>
 
-{{-- <link href = "/css/bootstrap-min.css" rel = "stylesheet"> --}}
-
-<link href="/css/bootstrap.css" rel="stylesheet" />
-
-
-
-
-
-<link href="css1/bootstrap.css" rel="stylesheet">
-<link rel="stylesheet" href="css1/bootstrap-responsive.css">
-
-<!-- Custom Css -->
-
-
-<link rel="stylesheet" href="{{ asset('css1/custom-styles.css')}}">
-<link rel="stylesheet" href="{{ asset('css/animate.css')}}" media="all"  />
-<link href="{{ asset('css1/main.css')}}" rel="stylesheet">
-<link href="{{ asset('css1/style.css')}}" rel="stylesheet" type="text/css" media="all" />
-<link href="{{ asset('css1/theme.css')}}" rel="stylesheet">
-<link rel="stylesheet" href="{{ asset('css2/main.css')}}">
-<link href="{{ asset('css2/custom.css')}}" rel="stylesheet">
-<link href="{{ asset('css1/styled.css')}}" rel="stylesheet">
-<link rel="stylesheet" href="{{ asset('css1/custom-styles.css')}}">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}" media="all" />
-      <link rel="stylesheet" href="{{ asset('css2/bootstrap.css')}}" media="all" />
-    <link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css')}}" media="all" />
-      <link href="{{ asset('css/theme2.css')}}" rel="stylesheet">
-       <link href="{{ asset('css2/style.css')}}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css')}}" media="all" />  '
-
-      <link rel="stylesheet" href="{{ asset('css/social.css')}}">
-     {{-- <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css"> --}}
-       {{-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script> --}}
-
-
-<!-- Custom Fonts -->
-{{-- <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"> --}}
-       <link rel="stylesheet" href="{{ asset('css/style.css')}}" media="all" />
-
-    <link rel="stylesheet" id="lz-switcher-style" href="{{ asset('css/switcher-default.css')}}" media="all" />
-
-
-    <script src="{{ asset('js/vendor/modernizr-2.6.2.min.js')}}"></script>
 
 </head>
 
 <body>
-  <div class="cblzbody-wrapper">
-  <header>
-  <nav class="navbar navbar-custom navbar-fixed-top" role="navigation" style="padding-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
-<div class="container">
+@component('headings')
 
-<div class="navbar-header">
-<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
-<i class="fa fa-bars"></i>
-</button>
-<a class="navbar-brand" href="#">Mobile Repair</a>
-</div>
+@endcomponent
 
-<!-- Collect the nav links, forms, and other content for toggling -->
-<div class="collapse navbar-collapse navbar-right navbar-main-collapse">
- <ul class="nav navbar-nav navbar-right">
-   <li class=""><a href="../">HOME</a> </li>
-   <li class=""><a href="/products">STORE</a> </li>
-   <li class=""><a href="#">CONTACT US</a> </li>
-   <li class=""><a href="#">CART<span class="badge">1</span></a></li>
-   <!-- Right Side Of Navbar -->
-   <ul class="nav navbar-nav navbar-right">
-       <!-- Authentication Links -->
-       @if (Auth::guest())
-           <li><a href="{{ route('login') }}">Login</a></li>
-           <li><a href="{{ route('register') }}">Register</a></li>
-       @else
-           <li class="dropdown">
-               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                   {{ Auth::user()->name }} <span class="caret"></span>
-               </a>
+<div class="container" style="width:95%">
+<div class="row">
+  <div class="col-md-2">
 
-               <ul class="dropdown-menu" role="menu">
-                   <li>
-                       <a href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                           Logout
-                       </a>
+      <div class="filter">
 
-                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                           {{ csrf_field() }}
-                       </form>
-                   </li>
-               </ul>
-           </li>
+    <div class="modelfilter">
+
+       <h3>Filter by models</h3>
+
+       <div id="ab">Models</div>
+
+       <select id="fetchmodel" name="modelname">
+         <<option value="all">All</option>
+       @if ($models)
+       @foreach ($models as $model)
+         <option value="{{$model->brand}} ">{{$model->brand}}({{$model->total}})</option>
+       @endforeach
        @endif
-   </ul>
+       </select>
 
- </ul>
-</div>
-<!-- /.navbar-collapse -->
-</div>
-<!-- /.container -->
-</nav>
+     </div>
+    <div style="display:flex;">
+    <form action="/products/mainfilter/s" class="filterform" style="" role="form">
 
+      <div class="input-group">
+        <span class="input-group-addon">Min Price</span>
+        <input type="number" name="minprice" class="form-control" placeholder="">
 
-<!-- Intro Header -->
+      </div>
+      {{-- <input name="minprice" type='number'  />minprice --}}
+      <div class="input-group">
+        <span class="input-group-addon">Max Price</span>
+        <input name="maxprice" type='number' class="form-control" placeholder="">
 
-  </header>
+      </div>
+      {{-- <input name="maxprice" type='number' />maxprice --}}
+      <div class="input-group">
+        <span class="input-group-addon">Min RAM</span>
+        <input name="minram" type="number" class="form-control" placeholder="">
 
+      </div>
+    {{-- <input name="minram" type="number" />minram --}}
 
-  <div class="filter">
+    <div class="input-group">
+      <span class="input-group-addon">Camera</span>
+      <input type="number" name="minbackcam" class="form-control" placeholder="in MP">
 
-<div class="modelfilter">
+    </div>
 
-   <h3>Filter by models</h3>
+    {{-- <input name="minbackcam" type="number" />minbackcam --}}
+    <div class="input-group">
 
-   <div id="ab">Models</div>
+      <input type="submit" class="form-control" value="Filter">
 
-   <select id="fetchmodel" name="modelname">
-     <<option value="all">All</option>
-   @if ($models)
-   @foreach ($models as $model)
-     <option value="{{$model->brand}} ">{{$model->brand}}({{$model->total}})</option>
-   @endforeach
-   @endif
-   </select>
+    </div>
+    {{-- <input type="submit" value="filter" /> --}}
 
- </div>
-<div style="display:flex;">
-<form action="/products/mainfilter/s" class="filterform" style="display:flex" role="form">
+    {{-- <select id="sortproducts">
+    <<option value="0">Usual</option>
+    <<option value="1">Price Low to High</option>
+    <<option value="2">Price High to Low</option>
+    <<option value="3">Popular First</option>
+    <<option value="4">New First</option>
+    </select> --}}
 
-  <input name="minprice" type='number'  />minprice
-  <input name="maxprice" type='number' />maxprice
+     </form>
+    </div>
+     </div>
+  </div>
+  <div class="col-md-10">
+    <div>
 
-<input name="minram" type="number" />minram
+      <select id="sortproducts">
+      <<option value="0">Usual</option>
+      <<option value="1">Price Low to High</option>
+      <<option value="2">Price High to Low</option>
+      <<option value="3">Popular First</option>
+      <<option value="4">New First</option>
+    </select> <span>Sorting</span>
+    </div>
+    <div class="container">
 
+      <div class="row productcontent">
 
-<input name="minbackcam" type="number" />minbackcam
-
-<input type="submit" value="filter" />
-
-<select id="sortproducts">
-<<option value="0">Usual</option>
-<<option value="1">Price Low to High</option>
-<<option value="2">Price High to Low</option>
-<<option value="3">Popular First</option>
-<<option value="4">New First</option>
-</select>
-
- </form>
-</div>
- </div>
-<div class="container">
-
-  <div class="row productcontent">
-
-
-
-  @foreach ($productdatas as $productdata)
-
-
-
-    @if ($productdata)
-
-
- <div class="col-md-3 col-sm-6 col-xs-12" style="padding-bottom:10px">
- <div class="col-item cbx-single-all">
- <div class="photo">
- <img  class="lazy" style="margin-left:1%; padding:10px 10px;" src="/images/products/samsung-galaxy-pocket.jpg" data-original="/images/products/{{$productdata->imagename}}" onerror="this.src='/images/products/samsung-galaxy-pocket.jpg'"  alt="{{$productdata->title}}"/>
- </div>
- <div class="info">
- <div class="row">
-   <div class="price col-md-12 xs-text-center">
-       <h5 class="product-title-color"><strong><a href="products/{{$productdata->productid}}" >{{$productdata->title}}</a> </strong></h5>
-       <h5 class="price-text-color">{{$productdata->price}}</h5>
-   </div>
- </div>
- <div class="separator clear-left">
-   <p class="btn-add">
-       <i class="fa fa-shopping-cart"></i>
-       <a href="#" class="hidden-sm">Add to cart</a>
-   </p>
-   <p class="btn-details">
-       <i class="fa fa-list"></i>
-       <a href="products/{{$productdata->productid}}"  class="hidden-sm">Details</a>
-   </p>
- </div>
- <div class="clearfix"></div>
- </div>
- </div>
- </div>
-  <!--//Item-->
+<section class="new-deal">
+        		 <div class="container">
+        <div class="2 deal deal-block">
+      @foreach ($productdatas as $productdata)
 
 
-      {{-- <div class="col-md-2 " style="background-color:#ddd;border-radius:5px;padding:0px;margin-top:10px;margin-bottom:10px;margin-left:50px;">
-    <a href="products/{{$productdata->productid}}">
-  <img style="margin-left:1%; padding:10px 10px; size:cover; " src="/images/products/{{$productdata->imagename}}" onerror="this.src='/images/products/default.jpg'"  alt="{{$productdata->title}}"/>
-      <p style="border:2px solid #F44; text-align:center; font-size:1em;">
-        {{$productdata->title}}</p>
-    </a>
 
-    </div> --}}
+        @if ($productdata)
 
 
-    @endif
+     <div class="col-md-3 col-sm-6 col-xs-12" style="padding-bottom:10px">
+     {{-- <div class="col-item cbx-single-all">
+     <div class="photo">
+     <img  class="lazy" style="margin-left:1%; padding:10px 10px;" src="/images/products/samsung-galaxy-pocket.jpg" data-original="/images/products/{{$productdata->imagename}}" onerror="this.src='/images/products/samsung-galaxy-pocket.jpg'"  alt="{{$productdata->title}}"/>
+     </div>
+     <div class="info">
+     <div class="row">
+       <div class="price col-md-12 xs-text-center">
+           <h5 class="product-title-color"><strong><a href="products/{{$productdata->productid}}" >{{$productdata->title}}</a> </strong></h5>
+           <h5 class="price-text-color">{{$productdata->price}}</h5>
+       </div>
+     </div>
+     <div class="separator clear-left">
+       <p class="btn-add">
+           <i class="fa fa-shopping-cart"></i>
+           <a href="#" class="hidden-sm">Add to cart</a>
+       </p>
+       <p class="btn-details">
+           <i class="fa fa-list"></i>
+           <a href="products/{{$productdata->productid}}"  class="hidden-sm">Details</a>
+       </p>
+     </div>
+     <div class="clearfix"></div>
+     </div>
+     </div> --}}
+     <div class="item-slide">
+           <div class="box-img ">
+             <img  class="lazy" style="margin-left:1%; padding:10px 10px;" src="/images/products/samsung-galaxy-pocket.jpg" data-original="/images/products/{{$productdata->imagename}}" onerror="this.src='/images/products/samsung-galaxy-pocket.jpg'"  alt="{{$productdata->title}}"/>
+             <div class="text-wrap">
 
-  @endforeach
-  {{$productdatas->links()}}
+               <div class="desc">
+
+                 <h3>$1000</h3>
+               </div>
+               <div class="book-now-c">
+               <a href="#">Book Now</a>
+               </div>
+             </div>
+           </div>
+           <div class="slide-hover">
+           <div class="text-wrap">
+           <p>MyFlightSearch gets you flight tickets at the best price. MyFlightSearch gets you flight tickets at the best price.</p>
+           <h4>Paris europe  <span class="deal-data"><span class="glyphicon glyphicon-calendar"></span> Sun, Jan 29 - Tue, Jan 31</span></h4>
+               <div class="desc">
+                 <span>Starting from</span>
+                 <h3>$1000</h3>
+               </div>
+               <div class="book-now-c">
+                 <a href="#">Book Now</a>
+               </div>
+             </div>
+           </div>
+       </div>
+     </div>
+      <!--//Item-->
+
+
+          {{-- <div class="col-md-2 " style="background-color:#ddd;border-radius:5px;padding:0px;margin-top:10px;margin-bottom:10px;margin-left:50px;">
+        <a href="products/{{$productdata->productid}}">
+      <img style="margin-left:1%; padding:10px 10px; size:cover; " src="/images/products/{{$productdata->imagename}}" onerror="this.src='/images/products/default.jpg'"  alt="{{$productdata->title}}"/>
+          <p style="border:2px solid #F44; text-align:center; font-size:1em;">
+            {{$productdata->title}}</p>
+        </a>
+
+        </div> --}}
+
+
+        @endif
+
+      @endforeach
+    </div>
+  </div>
+      {{$productdatas->links()}}
+</section>
+      </div>
+
+      </div>
+
 
   </div>
+</div>
 
-  </div>
+</div>
+
+</body>
+</html>
 
 
 
-  <script src="/js/jquery-3.2.1.js" type="text/javascript"></script>
-  <script src="/js/jquery.lazyload.js" type="text/javascript"></script>
+<script src="/js/jquery-3.2.1.js" type="text/javascript"></script>
+<script src="/js/jquery.lazyload.js" type="text/javascript"></script>
 
-  <script >
+<script >
 
 
 //forr filtering from form
@@ -417,6 +348,7 @@
 
 
   </script>
+
   <style>
   /*.pagination {
       display: flex;
@@ -442,6 +374,6 @@
 */
 
   </style>
-
-</body>
-</html>
+  <link rel="stylesheet" href="css/bootstrap.min.css" media="all" />
+  <link rel="stylesheet" href="css/productview.css" media="all" />
+  {{-- <link rel="stylesheet" href="css/style.css" media="all" /> --}}
